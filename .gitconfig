@@ -1,0 +1,11 @@
+[user]
+	name = Zack M. Davis
+	#email = [redacted]
+[core]
+	editor = emacs -nw
+[alias]
+	co = commit
+	ch = checkout
+	s = status
+	a = add
+	p = push
