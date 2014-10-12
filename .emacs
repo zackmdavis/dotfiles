@@ -1,5 +1,9 @@
 ;; general
+
+;;; CUA
 (cua-mode t)
+(global-set-key (kbd "C-a") 'mark-whole-buffer)
+
 (setq make-backup-files nil)
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
@@ -19,6 +23,8 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-r") 'revert-buffer)
+
+;;; window navigation
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
 (global-set-key [M-up] 'windmove-up)
@@ -32,6 +38,12 @@
 ;; undisabled commands
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+
+;; commands
+(defun kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
 
 
 ;; mode management
