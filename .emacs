@@ -8,6 +8,7 @@
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
 (show-paren-mode 1)
+(global-auto-revert-mode 1)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (require 'uniquify)
