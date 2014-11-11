@@ -46,6 +46,24 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
+(defconst github-commmit-url-format-string
+  "https://github.com/%s/%s/commit/%s/")
+
+(defun browse-github-sha (owner repository sha)
+  (browse-url (format github-commmit-url-format-string
+                      owner repository sha)))
+
+(defun browse-github-sha-at-point ()
+  (interactive)
+  (let* ((bounds (bounds-of-thing-at-point 'word))
+         (sha (buffer-substring (car bounds) (cdr bounds))))
+    (let ((remote
+           (shell-command-to-string "git config --get remote.origin.url")))
+      (string-match "git@github.com:\\(.+\\)/\\(.+\\).git" remote)
+      (let* ((owner (match-string 1 remote))
+             (repository (match-string 2 remote)))
+        (browse-github-sha owner repository sha)))))
+
 
 ;; mode management
 

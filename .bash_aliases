@@ -13,3 +13,13 @@ alias gco="git commit"
 # Emacs
 alias e="emacs"
 alias te="emacs -nw"
+
+# grep
+alias grh="history | grep"
+alias grl="ls -la | grep"
+
+# Python virtualenv
+alias sba="source bin/activate"
+
+# Racket with up-arrow history
+alias racket_repl="racket -il readline"
