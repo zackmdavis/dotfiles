@@ -64,6 +64,14 @@
              (repository (match-string 2 remote)))
         (browse-github-sha owner repository sha)))))
 
+(defun markdown-to-html ()
+  (interactive)
+  (let* ((basename (file-name-sans-extension (buffer-file-name)))
+         (html-filename (format "%s.html" basename)))
+    (shell-command (format "pandoc -o %s %s"
+                           html-filename (buffer-file-name)))
+    (find-file-other-window html-filename)))
+
 
 ;; mode management
 
