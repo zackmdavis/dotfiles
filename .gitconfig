@@ -4,8 +4,7 @@
 [core]
 	editor = emacs -nw
 [alias]
-	co = commit
-	ch = checkout
 	s = status
 	a = add
-	p = push
+	co = commit
+	ch = checkout

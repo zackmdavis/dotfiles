@@ -32,10 +32,6 @@
 (global-set-key [M-down] 'windmove-down)
 
 
-;; hooks
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-
 ;; undisabled commands
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -71,6 +67,32 @@
     (shell-command (format "pandoc -o %s %s"
                            html-filename (buffer-file-name)))
     (find-file-other-window html-filename)))
+
+(defun fullscreen ()
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+
+
+;; hooks
+(defun delete-trailing-whitespace-in-code ()
+  (when (derived-mode-p 'prog-mode)
+    (delete-trailing-whitespace)))
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace-in-code)
+
+(defconst window-count 2)
+
+(defun my-after-init-hook ()
+  (when (display-graphic-p)
+    (fullscreen)
+    (dotimes (i (1- window-count))
+      (split-window-horizontally))
+    (balance-windows)))
+
+(add-hook 'after-init-hook 'my-after-init-hook)
 
 
 ;; mode management
