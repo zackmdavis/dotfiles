@@ -4,6 +4,14 @@
 (cua-mode t)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 
+(defun backward-delete-word (multiple)
+  "As opposed to backward-kill-word, which modifies the clipboard
+   ('kill ring')."
+  ;; from http://stackoverflow.com/a/6133921
+  (interactive "p")
+  (delete-region (point) (progn (backward-word multiple) (point))))
+(global-set-key [C-backspace] 'backward-delete-word)
+
 (setq make-backup-files nil)
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
@@ -38,9 +46,26 @@
 
 
 ;; commands
+
 (defun kill-all-buffers ()
+  ;; from http://stackoverflow.com/a/3417472
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
+
+(setq python-debug-line-identifier-counter ?A)
+
+(defun python-debug-print ()
+  (interactive)
+  (insert "print(\"MY DEBUG MARKER ")
+  (insert python-debug-line-identifier-counter)
+  (insert "\", )")
+  (backward-char 1)
+  (setq python-debug-line-identifier-counter
+        (1+ python-debug-line-identifier-counter)))
+
+(defun python-debug-breakpoint ()
+  (interactive)
+  (insert "from pudb import set_trace as debug; debug()"))
 
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
@@ -69,12 +94,12 @@
     (find-file-other-window html-filename)))
 
 (defun fullscreen ()
+  ;; from http://www.emacswiki.org/emacs/FullScreen
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
-
 
 ;; hooks
 (defun delete-trailing-whitespace-in-code ()
@@ -99,6 +124,7 @@
 
 ;;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 (setq web-mode-engines-alist
       '(("django" . "\\.html\\'")))
 (defun my-web-mode-hook ()
