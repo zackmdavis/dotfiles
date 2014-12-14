@@ -27,10 +27,11 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
-
-;; custom bindings
+;; enhanced commands
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; custom bindings
 (global-set-key (kbd "M-r") 'revert-buffer)
 
 ;;; window navigation
@@ -39,11 +40,9 @@
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 
-
 ;; undisabled commands
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-
 
 ;; commands
 
@@ -52,20 +51,49 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
-(setq python-debug-line-identifier-counter ?A)
+(setq debug-line-identifier-counter ?A)
+
+(defun debug-print (opening closing)
+  (insert opening debug-line-identifier-counter closing)
+  (backward-char)
+  (setq debug-line-identifier-counter
+        (1+ debug-line-identifier-counter)))
 
 (defun python-debug-print ()
   (interactive)
-  (insert "print(\"MY DEBUG MARKER ")
-  (insert python-debug-line-identifier-counter)
-  (insert "\", )")
-  (backward-char 1)
-  (setq python-debug-line-identifier-counter
-        (1+ python-debug-line-identifier-counter)))
+  (debug-print "print(\"MY DEBUG MARKER " "\", )"))
 
 (defun python-debug-breakpoint ()
   (interactive)
   (insert "from pudb import set_trace as debug; debug()"))
+
+(defun python-string-to-implicitly-joined-for-pep8 ()
+  (interactive)
+  (let ((paren-maybe (lambda (p) (when (not (equal (char-before) p))
+                                   (insert p)))))
+    (save-excursion
+      (search-backward "\"")
+      (funcall paren-maybe 40)  ; "("
+      (setq end-of-the-line (move-to-column 78))
+      (while (equal end-of-the-line 78)  ; we made it far enough
+        (search-backward " ")
+        (forward-char)
+        (insert "\"\n\"")
+        (indent-for-tab-command)
+        (setq end-of-the-line (move-to-column 78)))
+      (funcall paren-maybe 41))))  ; ")"
+
+(defun clojure-debug-print ()
+  (interactive)
+  (debug-print "(println \"MY DEBUG MARKER " "\" )"))
+
+(defun rust-debug-print ()
+  (interactive)
+  (debug-print "println!(\"MY DEBUG MARKER " " {}\", )"))
+
+(defun javascript-debug-print ()
+  (interactive)
+  (debug-print "console.log(\"MY DEBUG MARKER " "\", )"))
 
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
@@ -103,7 +131,7 @@
 
 ;; hooks
 (defun delete-trailing-whitespace-in-code ()
-  (when (derived-mode-p 'prog-mode)
+  (when (or (derived-mode-p 'prog-mode) (equal major-mode 'web-mode))
     (delete-trailing-whitespace)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace-in-code)
