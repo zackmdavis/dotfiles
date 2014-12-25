@@ -28,7 +28,11 @@
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
 ;; enhanced commands
+
 (global-set-key (kbd "M-/") 'hippie-expand)
+(delete 'try-expand-list hippie-expand-try-functions-list)
+(delete 'try-expand-line hippie-expand-try-functions-list)
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; custom bindings
@@ -44,7 +48,38 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; commands
+;; pairings
+
+(setq parens-require-spaces nil)
+
+(defun my-insert-pair (pair-literal)
+  (interactive)
+  (insert pair-literal)
+  (backward-char))
+
+(defun insert-brackets ()
+  (interactive)
+  (my-insert-pair "[]"))
+
+(defun insert-braces ()
+  (interactive)
+  (my-insert-pair "{}"))
+
+(defun insert-double-quotes ()
+  (interactive)
+  (my-insert-pair "\"\""))
+
+(defun insert-single-quotes ()
+  (interactive)
+  (my-insert-pair "''"))
+
+(when (display-graphic-p)
+  (global-set-key (kbd "M-[") 'insert-brackets)
+  (global-set-key (kbd "M-{") 'insert-braces)
+  (global-set-key (kbd "M-\"") 'insert-double-quotes)
+  (global-set-key (kbd "M-'") 'insert-single-quotes))
+
+;; more commands
 
 (defun kill-all-buffers ()
   ;; from http://stackoverflow.com/a/3417472
@@ -94,6 +129,11 @@
 (defun javascript-debug-print ()
   (interactive)
   (debug-print "console.log(\"MY DEBUG MARKER " "\", )"))
+
+(defun insert-lambda ()
+  (interactive)
+  (insert "λ"))
+(global-set-key (kbd "M-l") 'insert-lambda)
 
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
