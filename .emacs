@@ -205,6 +205,20 @@
                       :foreground "#8b2252"))
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
+(setq git-commit-summary-max-length 72)
+
+(defun my-anti-git-rebase-mode-hook ()
+  ;; I don't like rebase mode
+  (fundamental-mode)
+  (setq buffer-read-only nil))
+(add-hook 'git-rebase-mode-hook 'my-anti-git-rebase-mode-hook)
+
+
+;; dayjob-specific configuration
+(defconst dayjob-config "~/.emacs.d/dayjob.el")
+(when (file-exists-p dayjob-config)
+  (load-file dayjob-config))
+
 
 ;; package management
 (require 'package)
