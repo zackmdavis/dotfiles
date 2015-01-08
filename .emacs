@@ -15,6 +15,7 @@
 (setq make-backup-files nil)
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
+(setq vc-follow-symlinks t)
 (show-paren-mode 1)
 (global-auto-revert-mode 1)
 (when (fboundp 'tool-bar-mode)
@@ -212,3 +213,12 @@
 (add-to-list 'package-archives
               '("MELPA" . "http://melpa.milkbox.net/packages/" ))
 (package-initialize)
+
+(defconst my-packages '(clojure-mode racket-mode rust-mode web-mode magit))
+
+(defun install-my-packages ()
+  (interactive)
+  ;; http://stackoverflow.com/a/10093312
+  (dolist (package my-packages)
+    (unless (package-installed-p package)
+      (package-install package))))
