@@ -49,6 +49,22 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; special characters
+
+(defun insert-em-dash ()
+  (interactive)
+  (insert "—"))
+(global-set-key (kbd "M-_") 'insert-em-dash)
+
+(defun insert-en-dash ()
+  (interactive)
+  (insert "–"))
+
+(defun insert-lambda ()
+  (interactive)
+  (insert "λ"))
+(global-set-key (kbd "M-l") 'insert-lambda)
+
 ;; pairings
 
 (setq parens-require-spaces nil)
@@ -130,11 +146,6 @@
 (defun javascript-debug-print ()
   (interactive)
   (debug-print "console.log(\"MY DEBUG MARKER " "\", )"))
-
-(defun insert-lambda ()
-  (interactive)
-  (insert "λ"))
-(global-set-key (kbd "M-l") 'insert-lambda)
 
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
