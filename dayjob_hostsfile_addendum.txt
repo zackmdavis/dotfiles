@@ -1,0 +1,10 @@
+# prevent distraction
+
+127.0.0.1 news.ycombinator.com
+127.0.0.1 math.stackexchange.com
+127.0.0.1 scifi.stackexchange.com
+127.0.0.1 worldbuilding.stackexchange.com
+127.0.0.1 workplace.stackexchange.com
+127.0.0.1 academia.stackexchange.com
+127.0.0.1 codereview.stackexchange.com
+127.0.0.1 puzzling.stackexchange.com
