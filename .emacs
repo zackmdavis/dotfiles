@@ -98,10 +98,14 @@
 
 ;; more commands
 
-(defun kill-all-buffers ()
-  ;; from http://stackoverflow.com/a/3417472
+(defun cd~ ()
   (interactive)
-  (mapc 'kill-buffer (buffer-list)))
+  (cd "~"))
+
+(defun reset-emacs ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list))
+  (cd~))
 
 (setq debug-line-identifier-counter ?A)
 
@@ -146,6 +150,14 @@
 (defun javascript-debug-print ()
   (interactive)
   (debug-print "console.log(\"MY DEBUG MARKER " "\", )"))
+
+(defun hy-debug-print ()
+  (interactive)
+  (debug-print "(print \"MY DEBUG MARKER " "\" )"))
+
+(defun hy-debug-breakpoint ()
+  (interactive)
+  (insert "(import [pudb [set-trace]]) (set-trace)"))
 
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
@@ -240,6 +252,12 @@
 (package-initialize)
 
 (defconst my-packages '(clojure-mode racket-mode rust-mode web-mode magit))
+
+;; using a Git clone instead of package management for the moment
+;; because I've hacked on this at least once and might do so again
+(defconst hy-mode-path "~/.emacs.d/hy-mode/hy-mode.el")
+(when (file-exists-p hy-mode-path)
+  (load-file hy-mode-path))
 
 (defun install-my-packages ()
   (interactive)
