@@ -28,6 +28,10 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
+;; about halfway between San Francisco and Walnut Creek
+(setq calendar-latitude 37.8448)
+(setq calendar-longitude -122.2490)
+
 ;; enhanced commands
 
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -236,6 +240,9 @@
   (setq buffer-read-only nil))
 (add-hook 'git-rebase-mode-hook 'my-anti-git-rebase-mode-hook)
 
+(defun display-startup-echo-area-message ()
+  (when (display-graphic-p)
+    (message (sunrise-sunset))))
 
 ;; dayjob-specific configuration
 (defconst dayjob-config "~/.emacs.d/dayjob.el")
