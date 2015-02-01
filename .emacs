@@ -218,6 +218,9 @@
 
 ;; mode management
 
+(setq safe-local-variable-values
+      '((eval put-clojure-indent 'map-comprehension 1)))
+
 ;;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
