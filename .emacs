@@ -26,6 +26,9 @@
 (setq initial-major-mode 'text-mode)
 (setq-default indent-tabs-mode nil)
 (define-coding-system-alias 'UTF-8 'utf-8)
+
+;; theme
+(load-theme 'wombat)
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
 ;; about halfway between San Francisco and Walnut Creek
@@ -199,7 +202,9 @@
 
 ;; hooks
 (defun delete-trailing-whitespace-in-code ()
-  (when (or (derived-mode-p 'prog-mode) (equal major-mode 'web-mode))
+  (when (or (derived-mode-p 'prog-mode)
+            (equal major-mode 'web-mode)
+            (equal major-mode 'rust-mode))
     (delete-trailing-whitespace)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace-in-code)
@@ -227,6 +232,7 @@
 (setq web-mode-engines-alist
       '(("django" . "\\.html\\'")))
 (defun my-web-mode-hook ()
+  (setq web-mode-markup-indent-offset 2)
   (set-face-attribute 'web-mode-html-tag-face nil
                       :foreground "blue")
   (set-face-attribute 'web-mode-html-attr-name-face nil
