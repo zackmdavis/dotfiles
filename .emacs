@@ -28,7 +28,8 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
 ;; theme
-(load-theme 'wombat)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'an-algorithmic-luciditheme t)
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
 ;; about halfway between San Francisco and Walnut Creek
@@ -232,13 +233,7 @@
 (setq web-mode-engines-alist
       '(("django" . "\\.html\\'")))
 (defun my-web-mode-hook ()
-  (setq web-mode-markup-indent-offset 2)
-  (set-face-attribute 'web-mode-html-tag-face nil
-                      :foreground "blue")
-  (set-face-attribute 'web-mode-html-attr-name-face nil
-                      :foreground "#a0522d")
-  (set-face-attribute 'web-mode-html-attr-value-face nil
-                      :foreground "#8b2252"))
+  (setq web-mode-markup-indent-offset 2))
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 (setq git-commit-summary-max-length 72)
