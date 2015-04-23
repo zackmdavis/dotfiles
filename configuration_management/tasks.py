@@ -6,6 +6,13 @@ from invoke import task, run
 # bootstap the ability to run these tasks by getting Python 3 and Invoke
 
 
+# general task helpers
+
+def idempotence_guard(condition):
+    if not condition:
+        ...  # TODO
+
+
 # apt
 
 @task
@@ -13,8 +20,8 @@ def apt_get_update():
     run("sudo apt-get update")
 
 @task
-def apt_get_install(package):
-    run("sudo apt-get install {}".format(package))
+def apt_get_install(packages):
+    run("sudo apt-get install {}".format(packages))
 
 MY_APT_PACKAGES = ("emacs24", "python3", "python3-pip", "curl", "git", "gitk", "pandoc",
                    "default-jre", "chromium-browser", "sqlite", "redshift", "cowsay")
@@ -29,8 +36,8 @@ def apt_get_my_packages():
 MY_PIP_PACKAGES = ("pudb", "invoke")
 
 @task
-def pip_install(package, sudo=True, upgrade=False):
-    run("sudo pip install")
+def pip_install(packages, sudo=True, upgrade=False):
+    run("sudo pip3 install {}".format(packages))
 
 @task
 def pip_install_my_packages():

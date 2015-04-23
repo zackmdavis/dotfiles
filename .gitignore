@@ -1,5 +1,6 @@
 # (This intended as a .gitignore for the dotfiles repository, not a
 # global .gitignore dotfile.)
 
-.lein/self-installs/
+.lein/*
+!.lein/profiles.clj
 configuration_management/__pycache__/
