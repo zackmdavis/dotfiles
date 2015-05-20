@@ -19,7 +19,19 @@ alias grh="history | grep"
 alias grl="ls -la | grep"
 
 # Python virtualenv
-alias sba="source bin/activate"
+function sba ()
+{
+    local original_directory=$PWD;
+    while [[ ! -f bin/activate ]] && [[ $PWD != / ]]; do
+        cd ..
+    done
+    if [[ -f bin/activate ]]; then
+        source bin/activate;
+    else
+        echo "couldn't find virtualenv"
+    fi
+    cd $original_directory
+}
 
 # Racket with up-arrow history
 alias racket_repl="racket -il readline"
