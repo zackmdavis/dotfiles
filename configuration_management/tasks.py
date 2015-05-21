@@ -68,23 +68,30 @@ def mark_executable(path, sudo=False):
 
 # development setup
 
+DOTFILES_REPO_PATH = "/home/zmd/Code/dotfiles"
+
 @task
 def my_github_clone(repository):
     github_clone("zackmdavis", repository, "/home/zmd/Code/" + repository)
 
 @task
 def symlink_dotfiles():
-    # TODO: constantize shared subpaths more
-    if not os.path.exists("/home/zmd/Code/dotfiles"):
+    if not os.path.exists(DOTFILES_REPO_PATH):
         my_github_clone(repository)
     else:
         print("dotfiles repository already exists, continuing ...")
-    my_dotfiles = ('.emacs', '.gitconfig', '.bash_aliases', '.agignore', '.lein')
+    my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
+                   '.emacs.d/themes')
     for dotfile in my_dotfiles:
         if not os.path.islink("/home/zmd/" + dotfile):
+            print("linking {}".format(dotfile))
             run("ln -s /home/zmd/Code/dotfiles/{0} /home/zmd/{0}".format(dotfile))
         else:
             print("{} symlink already exists, continuing ...".format(dotfile))
+
+@task
+def install_gitconfig():
+    run("cp {}/.gitconfig /home/zmd/.gitconfig".format(DOTFILES_REPO_PATH))
 
 @task
 def install_leiningen(path="/usr/local/bin/lein"):
