@@ -1,3 +1,4 @@
+# -*- mode: sh; -*-
 
 alias sudo="sudo "
 
@@ -17,6 +18,9 @@ alias te="emacs -nw"
 # grep
 alias grh="history | grep"
 alias grl="ls -la | grep"
+
+# Vagrant
+alias v="vagrant"
 
 # Python virtualenv
 function sba ()

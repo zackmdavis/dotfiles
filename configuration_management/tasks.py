@@ -124,7 +124,10 @@ def install_vagrant():
     vagrant_deb_url = "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.deb"
     install_deb(vagrant_deb_url)
 
+
 @task
 def install_virtualbox():
-    virtualbox_deb_url = "http://download.virtualbox.org/virtualbox/4.3.28/virtualbox-4.3_4.3.28-100309~Ubuntu~raring_amd64.deb"
-    install_deb(virtualbox_deb_url)
+    run("wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -")
+    run("sudo sh -c 'echo \"deb http://download.virtualbox.org/virtualbox/debian trusty contrib\" >> /etc/apt/sources.list.d/virtualbox.list'")
+    apt_get_update()
+    apt_get_install("virtualbox-4.3")
