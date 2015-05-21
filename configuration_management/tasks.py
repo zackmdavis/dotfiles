@@ -1,5 +1,6 @@
 import os
 import sys
+import urllib.request
 
 from invoke import task, run
 
@@ -24,7 +25,8 @@ def apt_get_install(packages):
     run("sudo apt-get install {}".format(packages))
 
 MY_APT_PACKAGES = ("emacs24", "python3", "python3-pip", "curl", "git", "gitk", "pandoc",
-                   "default-jre", "chromium-browser", "sqlite", "redshift", "cowsay")
+                   "default-jre", "chromium-browser", "sqlite", "redshift", "cowsay",
+                   "linux-headers-generic", "build-essential", "dkms")
 
 @task
 def apt_get_my_packages():
@@ -33,7 +35,7 @@ def apt_get_my_packages():
 
 # pip
 
-MY_PIP_PACKAGES = ("pudb", "invoke")
+MY_PIP_PACKAGES = ("pudb", "invoke", "ipython")
 
 @task
 def pip_install(packages, sudo=True, upgrade=False):
@@ -70,9 +72,23 @@ def mark_executable(path, sudo=False):
 
 DOTFILES_REPO_PATH = "/home/zmd/Code/dotfiles"
 
+## generalized tasks
+
 @task
 def my_github_clone(repository):
     github_clone("zackmdavis", repository, "/home/zmd/Code/" + repository)
+
+@task
+def install_deb(deb_url):
+    local_destination = "/tmp/{}".format(deb_url.rsplit('/', 1)[1])
+    if not os.path.exists(local_destination):
+        urllib.request.urlretrieve(
+            deb_url, local_destination
+        )
+    run("sudo dpkg -i {}".format(local_destination))
+
+
+## configuration
 
 @task
 def symlink_dotfiles():
@@ -93,8 +109,22 @@ def symlink_dotfiles():
 def install_gitconfig():
     run("cp {}/.gitconfig /home/zmd/.gitconfig".format(DOTFILES_REPO_PATH))
 
+
+## particular applications
+
 @task
 def install_leiningen(path="/usr/local/bin/lein"):
     run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")
     run("sudo cp /tmp/lein {}".format(path))
     mark_executable(path, sudo=True)
+
+
+@task
+def install_vagrant():
+    vagrant_deb_url = "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.deb"
+    install_deb(vagrant_deb_url)
+
+@task
+def install_virtualbox():
+    virtualbox_deb_url = "http://download.virtualbox.org/virtualbox/4.3.28/virtualbox-4.3_4.3.28-100309~Ubuntu~raring_amd64.deb"
+    install_deb(virtualbox_deb_url)
