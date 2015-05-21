@@ -8,3 +8,5 @@
 	a = add
 	co = commit
 	ch = checkout
+[push]
+	default = simple
