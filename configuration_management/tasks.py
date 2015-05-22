@@ -25,8 +25,8 @@ def apt_get_install(packages):
     run("sudo apt-get install {}".format(packages))
 
 MY_APT_PACKAGES = ("emacs24", "python3", "python3-pip", "curl", "git", "gitk", "pandoc",
-                   "default-jre", "chromium-browser", "sqlite", "redshift", "cowsay",
-                   "linux-headers-generic", "build-essential", "dkms")
+                   "silversearcher-ag", "default-jre", "chromium-browser", "sqlite",
+                   "redshift", "cowsay", "build-essential", "dkms")
 
 @task
 def apt_get_my_packages():
@@ -108,6 +108,11 @@ def symlink_dotfiles():
 @task
 def install_gitconfig():
     run("cp {}/.gitconfig /home/zmd/.gitconfig".format(DOTFILES_REPO_PATH))
+
+
+@task
+def generate_ssh_keys(email, machine):
+    run("ssh-keygen -t rsa -b 4096 -C \"{} ({})\"".format(email, machine))
 
 
 ## particular applications
