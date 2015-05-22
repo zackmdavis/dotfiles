@@ -53,9 +53,14 @@
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 
-;; undisabled commands
+;; undisabled default commands
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; disabled default commands
+
+;; `suspend-frame` is not so useful and too easy to fat-finger
+(global-unset-key (kbd "C-x C-z"))
 
 ;; special characters
 
