@@ -272,7 +272,7 @@
               '("MELPA" . "http://melpa.milkbox.net/packages/" ))
 (package-initialize)
 
-(defconst my-packages '(clojure-mode racket-mode rust-mode web-mode magit))
+(defconst my-packages '(clojure-mode racket-mode rust-mode web-mode yaml-mode magit))
 
 ;; using a Git clone instead of package management for the moment
 ;; because I've hacked on this at least once and might do so again

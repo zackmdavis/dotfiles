@@ -9,10 +9,23 @@ from invoke import task, run
 
 # general task helpers
 
+# XXX UNTESTED AS YET
 def idempotence_guard(condition):
     if not condition:
-        ...  # TODO
+        return lambda fn: None
+    else:
+        return lambda fn: fn
 
+# XXX UNTESTED AS YET
+def not_if_content_in_file(content, my_file):
+    if content in my_file:
+        return lambda fn: None
+    else:
+        def decorate(fn):
+            def wrapper(*args, **kwargs):
+                return fn(*args, **kwargs, content=content)
+            return wrapper
+        return decorate
 
 # apt
 
@@ -24,8 +37,11 @@ def apt_get_update():
 def apt_get_install(packages):
     run("sudo apt-get install {}".format(packages))
 
-MY_APT_PACKAGES = ("emacs24", "python3", "python3-pip", "curl", "git", "gitk", "pandoc",
+MY_APT_PACKAGES = ("emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
+                   "gitk", "pandoc",
                    "silversearcher-ag", "default-jre", "chromium-browser", "sqlite",
+                   "lm-sensors",
+                   "python-dev", "tig", "git-flow",
                    "redshift", "cowsay", "build-essential", "dkms")
 
 @task
@@ -35,7 +51,7 @@ def apt_get_my_packages():
 
 # pip
 
-MY_PIP_PACKAGES = ("pudb", "invoke", "ipython")
+MY_PIP_PACKAGES = ("pudb", "invoke", "ipython", "hy")
 
 @task
 def pip_install(packages, sudo=True, upgrade=False):
@@ -51,7 +67,10 @@ def pip_install_my_packages():
 def git_clone(origin, destination):
     run("git clone {} {}".format(origin, destination))
 
-def github_clone(user, repository, destination):
+@task
+def github_clone(user, repository, destination=None):
+    if not destination:
+        destination = "~/Code/{}".format(repository)
     git_clone("git@github.com:{user}/{repository}.git".format(**locals()),
               destination)
 
@@ -105,6 +124,10 @@ def symlink_dotfiles():
             run("ln -s /home/zmd/Code/dotfiles/{0} /home/zmd/{0}".format(dotfile))
         else:
             print("{} symlink already exists, continuing ...".format(dotfile))
+
+@task
+def symlink_dayjob_dotfiles():
+    ... # TODO
 
 @task
 def install_gitconfig():
