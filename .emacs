@@ -275,6 +275,13 @@
 (when (file-exists-p hy-mode-path)
   (load-file hy-mode-path))
 
+
+;; I've been writing a programming language lately
+(defconst glitteral-mode-path "~/Code/Glitteral/glitteral-mode.el")
+(when (file-exists-p glitteral-mode-path)
+  (load-file glitteral-mode-path))
+
+
 (defun install-my-packages ()
   (interactive)
   ;; http://stackoverflow.com/a/10093312
