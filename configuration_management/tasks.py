@@ -23,7 +23,7 @@ def not_if_content_in_file(content, my_file):
     else:
         def decorate(fn):
             def wrapper(*args, **kwargs):
-                return fn(*args, **kwargs, content=content)
+                return fn(*args, content=content, **kwargs)
             return wrapper
         return decorate
 
@@ -42,7 +42,8 @@ MY_APT_PACKAGES = ("emacs24", "python3", "python3-dev", "python3-tk", "curl", "g
                    "silversearcher-ag", "default-jre", "chromium-browser", "sqlite",
                    "lm-sensors",
                    "python-dev", "tig", "git-flow",
-                   "redshift", "cowsay", "build-essential", "dkms")
+                   "redshift", "cowsay", "build-essential", "dkms", "libreadline-dev",
+                   "nodejs", "npm", "git-review")
 
 @task
 def apt_get_my_packages():
@@ -78,7 +79,7 @@ def github_clone(user, repository, destination=None):
 # files
 
 @task
-def make_directory_in_home(subpath):
+def make_dir_in_home(subpath):
     os.mkdir("/home/zmd/" + path, 0o775)
 
 @task
@@ -138,6 +139,13 @@ def install_gitconfig():
 def generate_ssh_keys(email, machine):
     run("ssh-keygen -t rsa -b 4096 -C \"{} ({})\"".format(email, machine))
 
+@task
+def make_home_bin_dir():
+    run("mkdir -p /home/zmd/bin")
+
+# TODO: lineinfile (for .bashrc lines, e.g., to append /home/zmd/bin to $PATH)
+# set revert-all-at-newline on
+# setxkbmap -layout us -option ctrl:nocaps
 
 ## particular applications
 

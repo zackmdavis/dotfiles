@@ -272,9 +272,9 @@
               '("MELPA" . "http://melpa.milkbox.net/packages/" ))
 (package-initialize)
 
-(defconst my-packages '(clojure-mode racket-mode rust-mode web-mode yaml-mode magit))
+(defconst my-packages '(clojure-mode racket-mode rust-mode web-mode less-css-mode yaml-mode magit))
 
-;; using a Git clone instead of package management for the moment
+;; Using a Git clone instead of package management for the moment
 ;; because I've hacked on this at least once and might do so again
 (defconst hy-mode-path "~/.emacs.d/hy-mode/hy-mode.el")
 (when (file-exists-p hy-mode-path)
