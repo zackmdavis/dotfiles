@@ -158,7 +158,7 @@
 
 (defun rust-debug-print ()
   (interactive)
-  (debug-print "println!(\"MY DEBUG MARKER " " {}\", )"))
+  (debug-print "println!(\"MY DEBUG MARKER " " {:?}\", );"))
 
 (defun javascript-debug-print ()
   (interactive)
@@ -171,6 +171,11 @@
 (defun hy-debug-breakpoint ()
   (interactive)
   (insert "(import [pudb [set-trace]]) (set-trace)"))
+
+(defun truncate-sha-at-point ()
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'word)))
+    (delete-region (+ (car bounds) 8) (cdr bounds))))
 
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
