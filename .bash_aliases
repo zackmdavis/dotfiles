@@ -18,6 +18,7 @@ alias te="emacs -nw"
 # grep
 alias grh="history | grep"
 alias grl="ls -la | grep"
+alias gre="env | grep"
 
 # Vagrant
 alias v="vagrant"

@@ -24,6 +24,7 @@
 (setq uniquify-buffer-name-style 'forward)
 (setq initial-scratch-message "; scratch!\n\n")
 (setq initial-major-mode 'text-mode)
+(setq-default fill-column 79)
 (setq-default indent-tabs-mode nil)
 (define-coding-system-alias 'UTF-8 'utf-8)
 
@@ -135,6 +136,10 @@
 (defun python-debug-breakpoint ()
   (interactive)
   (insert "from pudb import set_trace as debug; debug()"))
+
+(defun python-debug-stacktrace ()
+  (interactive)
+  (insert "import traceback; traceback.print_stack()"))
 
 (defun python-string-to-implicitly-joined-for-pep8 ()
   (interactive)
