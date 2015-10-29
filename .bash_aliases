@@ -1,6 +1,7 @@
 # -*- mode: sh; -*-
 
 alias sudo="sudo "
+alias r="reset"
 
 # Git
 
@@ -10,6 +11,10 @@ alias sudo="sudo "
 alias g="git"
 alias gs="git status"
 alias gco="git commit"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gl="git log"
+alias gg="git log --graph --oneline --decorate"
 
 # Emacs
 alias e="emacs"
@@ -19,6 +24,7 @@ alias te="emacs -nw"
 alias grh="history | grep"
 alias grl="ls -la | grep"
 alias gre="env | grep"
+alias grps="ps aux | grep"
 
 # Vagrant
 alias v="vagrant"
