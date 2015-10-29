@@ -104,11 +104,16 @@
   (interactive)
   (my-insert-pair "''"))
 
+(defun insert-angle-brackets ()
+  (interactive)
+  (my-insert-pair "<>"))
+
 (when (display-graphic-p)
   (global-set-key (kbd "M-[") 'insert-brackets)
   (global-set-key (kbd "M-{") 'insert-braces)
   (global-set-key (kbd "M-\"") 'insert-double-quotes)
-  (global-set-key (kbd "M-'") 'insert-single-quotes))
+  (global-set-key (kbd "M-'") 'insert-single-quotes)
+  (global-set-key (kbd "M-<") 'insert-angle-brackets))
 
 ;; more commands
 
@@ -220,6 +225,7 @@
 (defun delete-trailing-whitespace-in-code ()
   (when (or (derived-mode-p 'prog-mode)
             (equal major-mode 'web-mode)
+            (equal major-mode 'rst-mode)
             (equal major-mode 'rust-mode))
     (delete-trailing-whitespace)))
 
