@@ -8,3 +8,7 @@
 127.0.0.1 academia.stackexchange.com
 127.0.0.1 codereview.stackexchange.com
 127.0.0.1 puzzling.stackexchange.com
+127.0.0.1 slatestarcodex.com
+127.0.0.1 zackmdavis.net
+127.0.0.1 twitter.com
+127.0.0.1 facebook.com
