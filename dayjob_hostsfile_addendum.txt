@@ -12,3 +12,4 @@
 127.0.0.1 zackmdavis.net
 127.0.0.1 twitter.com
 127.0.0.1 facebook.com
+127.0.0.1 slatestarscratchpad.tumblr.com
