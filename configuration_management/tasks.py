@@ -149,6 +149,8 @@ def make_home_bin_dir():
 
 ## particular applications
 
+# TODO: Rust, Go
+
 @task
 def install_leiningen(path="/usr/local/bin/lein"):
     run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")

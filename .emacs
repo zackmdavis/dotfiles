@@ -174,6 +174,10 @@
   (interactive)
   (debug-print "console.log(\"MY DEBUG MARKER " "\", )"))
 
+(defun go-debug-print ()
+  (interactive)
+  (debug-print "fmt.Printf(\"MY DEBUG MARKER " " %v\\n\", )"))
+
 (defun hy-debug-print ()
   (interactive)
   (debug-print "(print \"MY DEBUG MARKER " "\" )"))
@@ -239,9 +243,12 @@
     (dotimes (i (1- window-count))
       (split-window-horizontally))
     (balance-windows)))
-
 (add-hook 'after-init-hook 'my-after-init-hook)
 
+
+(defun my-go-mode-hook ()
+  (setq tab-width 3))
+(add-hook 'go-mode-hook 'my-go-mode-hook)
 
 ;; mode management
 
@@ -280,7 +287,7 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-              '("MELPA" . "http://melpa.milkbox.net/packages/" ))
+              '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (defconst my-packages '(clojure-mode racket-mode rust-mode web-mode less-css-mode yaml-mode magit))
