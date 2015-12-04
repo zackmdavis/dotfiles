@@ -1,6 +1,7 @@
 import os
 import sys
 import urllib.request
+from functools import wraps
 
 from invoke import task, run
 
@@ -9,23 +10,31 @@ from invoke import task, run
 
 # general task helpers
 
-# XXX UNTESTED AS YET
-def idempotence_guard(condition):
-    if not condition:
-        return lambda fn: None
-    else:
-        return lambda fn: fn
+def not_if_any(predicate_manifest):
+    def derived_decorator(func):
+        @wraps(func)
+        def core(*args, **kwargs):
+            blocking = {reason for reason, predicate
+                        in predicate_manifest.items() if predicate()}
+            if blocking:
+                print("skipping {}: {}".format(
+                    func.__name__, ', '.join(reason for reason in blocking)))
+            else:
+                print("running {}".format(func.__name__))
+                return func(*args, **kwargs)
+        return core
+    return derived_decorator
 
-# XXX UNTESTED AS YET
-def not_if_content_in_file(content, my_file):
-    if content in my_file:
-        return lambda fn: None
-    else:
-        def decorate(fn):
-            def wrapper(*args, **kwargs):
-                return fn(*args, content=content, **kwargs)
-            return wrapper
-        return decorate
+
+def not_if_content_in_file(content, my_file_path):
+    def content_in_file():
+        with open(my_file_path) as my_file:
+            file_contents = my_file.read()
+        return content in file_contents
+    return not_if_any(
+        {"{!r} already in {}".format(content, my_file_path): content_in_file}
+    )
+
 
 # apt
 
@@ -143,7 +152,15 @@ def generate_ssh_keys(email, machine):
 def make_home_bin_dir():
     run("mkdir -p /home/zmd/bin")
 
-# TODO: lineinfile (for .bashrc lines, e.g., to append /home/zmd/bin to $PATH)
+
+@task
+@not_if_content_in_file("GOPATH", "/home/zmd/.bashrc")
+def export_gopath_in_bashrc():
+    run("echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc")
+    run("echo 'export GOPATH=~/Code/go_workspace' >> ~/.bashrc")
+    run("echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc")
+
+# TODO: append /home/zmd/bin to $PATH
 # set revert-all-at-newline on
 # setxkbmap -layout us -option ctrl:nocaps
 
