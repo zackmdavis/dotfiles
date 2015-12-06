@@ -27,6 +27,7 @@
 (setq-default fill-column 79)
 (setq-default indent-tabs-mode nil)
 (define-coding-system-alias 'UTF-8 'utf-8)
+(add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")

@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+
+# Copyright © 2015 Zack M. Davis
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+"""
+Configure the machine to shunt traffic to distracting sites to localhost,
+preserving attention.
+"""
+
+import os
+import argparse
+import subprocess
+import sys
+from datetime import datetime, timedelta
+
+ETC_HOSTS = os.path.join(os.sep, 'etc', 'hosts')
+HEADER = "# below managed by attentional shunt"
+INVERSE_COMMANDS = {'enable': "disable", 'disable': "enable"}
+
+DISTRACTING_HOSTS = (  # modify as needed
+    'news.ycombinator.com',
+    'math.stackexchange.com',
+    'scifi.stackexchange.com',
+    'worldbuilding.stackexchange.com',
+    'workplace.stackexchange.com',
+    'academia.stackexchange.com',
+    'codereview.stackexchange.com',
+    'puzzling.stackexchange.com',
+    'slatestarcodex.com',
+    'twitter.com',
+    'www.facebook.com',
+    'slatestarscratchpad.tumblr.com',
+)
+SHUNTING_LINES = "\n{}\n{}\n".format(
+    HEADER,
+    '\n'.join("127.0.0.1 {}".format(domain)
+              for domain in DISTRACTING_HOSTS)
+)
+
+
+def conditionally_reexec_with_sudo():
+    if os.geteuid() != 0:
+        os.execvp("sudo", ["sudo"] + sys.argv)
+
+
+def enable_shunt():
+    if is_enabled():
+        return  # nothing to do
+    with open(ETC_HOSTS, 'a') as etc_hosts:
+        etc_hosts.write(SHUNTING_LINES)
+
+
+def disable_shunt():
+    with open(ETC_HOSTS) as etc_hosts:
+        content = etc_hosts.read()
+    if SHUNTING_LINES not in content:
+        return  # nothing to do
+    with open(ETC_HOSTS, 'w') as etc_hosts:
+        etc_hosts.write(content.replace(SHUNTING_LINES, ''))
+
+
+def is_enabled():
+    with open(ETC_HOSTS) as etc_hosts:
+        content = etc_hosts.read()
+    return HEADER in content
+
+
+def status():
+    state = "enabled" if is_enabled() else "disabled"
+    print("attentional shunt is {}".format(state))
+
+
+def schedule(command, when):  # requires `at` job-scheduling utility
+    timestamp = when.strftime("%H:%M %Y-%m-%d")
+    at_command = ['at', timestamp]
+    at = subprocess.Popen(
+        at_command,
+        stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
+    at.communicate(command.encode())
+
+
+if __name__ == "__main__":
+    arg_parser = argparse.ArgumentParser(description=__doc__)
+    arg_parser.add_argument('command',
+                            choices=("enable", "disable", "status"))
+    arg_parser.add_argument('duration', nargs='?', type=int,
+                            help=("revert state change after this many "
+                                  "minutes (with one-minute warning)"))
+    args = arg_parser.parse_args()
+    if args.command == "status":
+        status()
+    else:
+        conditionally_reexec_with_sudo()
+        if args.command == "enable":
+            enable_shunt()
+        elif args.command == "disable":
+            disable_shunt()
+
+        if args.duration:
+            now = datetime.now()
+            inverse_command = INVERSE_COMMANDS[args.command]
+            schedule(
+                "{} {}".format(os.path.realpath(__file__), inverse_command),
+                now + timedelta(minutes=args.duration)
+            )

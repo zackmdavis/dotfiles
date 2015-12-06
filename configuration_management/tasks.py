@@ -25,7 +25,6 @@ def not_if_any(predicate_manifest):
         return core
     return derived_decorator
 
-
 def not_if_content_in_file(content, my_file_path):
     def content_in_file():
         with open(my_file_path) as my_file:
@@ -34,6 +33,14 @@ def not_if_content_in_file(content, my_file_path):
     return not_if_any(
         {"{!r} already in {}".format(content, my_file_path): content_in_file}
     )
+
+def not_if_any_paths(predicate, *paths):
+    return not_if_any(
+        {predicate.__name__: lambda: predicate(path) for path in paths}
+    )
+
+def not_if_any_is_symlink(*paths):
+    return not_if_any_paths(os.path.islink, *paths)
 
 
 # apt
@@ -47,7 +54,7 @@ def apt_get_install(packages):
     run("sudo apt-get install {}".format(packages))
 
 MY_APT_PACKAGES = ("emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
-                   "gitk", "pandoc",
+                   "gitk", "pandoc", "at",
                    "silversearcher-ag", "default-jre", "chromium-browser", "sqlite",
                    "lm-sensors",
                    "python-dev", "tig", "git-flow",
@@ -99,7 +106,8 @@ def mark_executable(path, sudo=False):
 
 # development setup
 
-DOTFILES_REPO_PATH = "/home/zmd/Code/dotfiles"
+HOME = os.path.join(os.sep, 'home', 'zmd')
+DOTFILES_REPO_PATH = os.path.join(HOME, 'Code', 'dotfiles')
 
 ## generalized tasks
 
@@ -140,6 +148,18 @@ def symlink_dayjob_dotfiles():
     ... # TODO
 
 @task
+def symlink_scripts():
+    for script in os.listdir(os.path.join(DOTFILES_REPO_PATH, 'bin')):
+        dotfiles_script_path = os.path.join(DOTFILES_REPO_PATH, 'bin', script)
+        bin_script_path = os.path.join(HOME, 'bin', script)
+        if not os.path.islink(bin_script_path):
+            print("linking {}".format(script))
+            run("ln -s {} {}".format(dotfiles_script_path, bin_script_path))
+        else:
+            print("{} symlink already exists, continuing ...".format(script))
+
+
+@task
 def install_gitconfig():
     run("cp {}/.gitconfig /home/zmd/.gitconfig".format(DOTFILES_REPO_PATH))
 
@@ -166,7 +186,7 @@ def export_gopath_in_bashrc():
 
 ## particular applications
 
-# TODO: Rust, Go
+# TODO: (multi)Rust, Go
 
 @task
 def install_leiningen(path="/usr/local/bin/lein"):
