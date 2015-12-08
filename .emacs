@@ -246,10 +246,9 @@
     (balance-windows)))
 (add-hook 'after-init-hook 'my-after-init-hook)
 
-
-(defun my-go-mode-hook ()
-  (setq tab-width 3))
-(add-hook 'go-mode-hook 'my-go-mode-hook)
+(defun display-startup-echo-area-message ()
+  (when (display-graphic-p)
+    (message (sunrise-sunset))))
 
 ;; mode management
 
@@ -273,9 +272,13 @@
   (setq buffer-read-only nil))
 (add-hook 'git-rebase-mode-hook 'my-anti-git-rebase-mode-hook)
 
-(defun display-startup-echo-area-message ()
-  (when (display-graphic-p)
-    (message (sunrise-sunset))))
+
+;; Go
+(defun my-go-mode-hook ()
+  (setq tab-width 3)
+  (local-set-key (kbd "M-=") (lambda () (interactive) (insert ":="))))
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+
 
 ;; dayjob-specific configuration
 (defconst dayjob-config "~/.emacs.d/dayjob.el")
