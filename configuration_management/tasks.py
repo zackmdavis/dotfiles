@@ -34,13 +34,18 @@ def not_if_content_in_file(content, my_file_path):
         {"{!r} already in {}".format(content, my_file_path): content_in_file}
     )
 
-def not_if_any_paths(predicate, *paths):
+def _not_if_any_paths(predicate, *paths):
     return not_if_any(
         {predicate.__name__: lambda: predicate(path) for path in paths}
     )
 
-def not_if_any_is_symlink(*paths):
-    return not_if_any_paths(os.path.islink, *paths)
+
+# TODO: debug
+# def not_if_any_exist(*paths):
+#     return _not_if_any_paths(os.path.exists, *paths)
+
+# def not_if_any_is_symlink(*paths):
+#     return _not_if_any_paths(os.path.islink, *paths)
 
 
 # apt
@@ -186,13 +191,24 @@ def export_gopath_in_bashrc():
 
 ## particular applications
 
-# TODO: (multi)Rust, Go
+# TODO: (multi)Rust
 
 @task
 def install_leiningen(path="/usr/local/bin/lein"):
     run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")
     run("sudo cp /tmp/lein {}".format(path))
     mark_executable(path, sudo=True)
+
+
+@task
+# @not_if_any_exist("/usr/local/bin/go") TODO debug
+def install_go():
+    urllib.request.urlretrieve(
+        "https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz",
+        "/tmp/go.tar.gz"
+    )
+    run("sudo tar -C /usr/local -xzf /tmp/go.tar.gz")
+    export_gopath_in_bashrc()
 
 
 @task
