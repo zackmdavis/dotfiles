@@ -12,6 +12,11 @@
   (delete-region (point) (progn (backward-word multiple) (point))))
 (global-set-key [C-backspace] 'backward-delete-word)
 
+;; backward- and forward- word seem the same as the defaults of left- and
+;; right-word, but get remapped by subword mode like you would expect
+(global-set-key [C-left] 'backward-word)
+(global-set-key [C-right] 'forward-word)
+
 (setq make-backup-files nil)
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
@@ -276,7 +281,8 @@
 ;; Go
 (defun my-go-mode-hook ()
   (setq tab-width 3)
-  (local-set-key (kbd "M-=") (lambda () (interactive) (insert ":="))))
+  (local-set-key (kbd "M-=") (lambda () (interactive) (insert ":=")))
+  (subword-mode 1))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
 
