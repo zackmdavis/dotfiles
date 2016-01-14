@@ -180,13 +180,14 @@ def export_gopath_in_bashrc():
     run("echo 'export GOPATH=~/Code/go_workspace' >> ~/.bashrc")
     run("echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc")
 
+
 # TODO: append /home/zmd/bin to $PATH
 # set revert-all-at-newline on
 # setxkbmap -layout us -option ctrl:nocaps
 
 ## particular applications
 
-# TODO: (multi)Rust, Go
+# TODO: (multi)Rust, Go (and important accessories like `goimports`)
 
 @task
 def install_leiningen(path="/usr/local/bin/lein"):

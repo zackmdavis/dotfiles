@@ -281,8 +281,10 @@
 ;; Go
 (defun my-go-mode-hook ()
   (setq tab-width 3)
-  (local-set-key (kbd "M-=") (lambda () (interactive) (insert ":=")))
-  (subword-mode 1))
+  (setq gofmt-command "~/Code/go_workspace/bin/goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (subword-mode 1) ; ubiquitousCamelCaseMeritsSubWordMode
+  (local-set-key (kbd "M-=") (lambda () (interactive) (insert ":="))))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
 
