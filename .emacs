@@ -192,6 +192,18 @@
   (interactive)
   (insert "(import [pudb [set-trace]]) (set-trace)"))
 
+(defun literalize-hexstream ()
+  (interactive)
+  (let ((line-bytes-literalized 0))
+    (while (string-match "[0-9a-f-A-F]" (char-to-string (following-char)))
+      (insert "0x")
+      (forward-char 2)
+      (insert ", ")
+      (setq line-bytes-literalized (1+ line-bytes-literalized))
+      (when (>= line-bytes-literalized 16)
+        (insert "\n")
+        (setq line-bytes-literalized 0)))))
+
 (defun truncate-sha-at-point ()
   (interactive)
   (let ((bounds (bounds-of-thing-at-point 'word)))
