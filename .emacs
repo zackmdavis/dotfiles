@@ -184,6 +184,16 @@
   (interactive)
   (debug-print "fmt.Printf(\"MY DEBUG MARKER " " %v\\n\", )"))
 
+(defun go-return-if-err ()
+  (interactive)
+  (dolist (line '("if err != nil {"
+                  "return err"
+                  "}"))
+    (insert line)
+    (indent-for-tab-command)
+    (newline))
+  (delete-backward-char 1)) ; one too many newlines
+
 (defun hy-debug-print ()
   (interactive)
   (debug-print "(print \"MY DEBUG MARKER " "\" )"))
