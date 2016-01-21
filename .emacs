@@ -36,7 +36,8 @@
 
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'an-algorithmic-luciditheme t)
+(when (file-exists-p "~/.emacs.d/themes/an-algorithmic-luciditheme-theme.el")
+  (load-theme 'an-algorithmic-luciditheme t))
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
 ;; about halfway between San Francisco and Walnut Creek
@@ -309,6 +310,9 @@
   (local-set-key (kbd "M-=") (lambda () (interactive) (insert ":="))))
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
+;; C (?!)
+(setq c-basic-offset 4)
+(setq c-default-style "linux")
 
 ;; dayjob-specific configuration
 (defconst dayjob-config "~/.emacs.d/dayjob.el")

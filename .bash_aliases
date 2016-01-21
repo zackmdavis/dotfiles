@@ -25,6 +25,7 @@ alias grh="history | grep"
 alias grl="ls -la | grep"
 alias gre="env | grep"
 alias grps="ps aux | grep"
+alias grports="netstat -tulpn | grep"
 
 # Vagrant
 alias v="vagrant"
