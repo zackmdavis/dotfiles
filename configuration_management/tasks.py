@@ -27,9 +27,13 @@ def not_if_any(predicate_manifest):
 
 def not_if_content_in_file(content, my_file_path):
     def content_in_file():
-        with open(my_file_path) as my_file:
-            file_contents = my_file.read()
-        return content in file_contents
+        try:
+            with open(my_file_path) as my_file:
+                file_contents = my_file.read()
+            return content in file_contents
+        except FileNotFoundError:
+            print("{} does not exist".format(my_file_path))
+            return False
     return not_if_any(
         {"{!r} already in {}".format(content, my_file_path): content_in_file}
     )
@@ -174,11 +178,23 @@ def make_home_bin_dir():
 
 
 @task
+def install_go():
+    run("cd /tmp")
+    run("wget https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz")
+    run("sudo tar -C /usr/local -xzf go1.5.3.linux-amd64.tar.gz")
+
+
+@task
 @not_if_content_in_file("GOPATH", "/home/zmd/.bashrc")
 def export_gopath_in_bashrc():
     run("echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc")
     run("echo 'export GOPATH=~/Code/go_workspace' >> ~/.bashrc")
     run("echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc")
+
+
+@task
+def install_goimports():
+    run("go get golang.org/x/tools/cmd/goimports")
 
 
 # TODO: append /home/zmd/bin to $PATH
@@ -187,7 +203,7 @@ def export_gopath_in_bashrc():
 
 ## particular applications
 
-# TODO: (multi)Rust, Go (and important accessories like `goimports`)
+# TODO: (multi)Rust
 
 @task
 def install_leiningen(path="/usr/local/bin/lein"):

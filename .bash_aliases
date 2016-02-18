@@ -47,3 +47,5 @@ function sba ()
 
 # Racket with up-arrow history
 alias racket_repl="racket -il readline"
+
+alias cdgow="cd ~/Code/go_workspace/src"

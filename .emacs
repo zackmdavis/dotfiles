@@ -185,15 +185,23 @@
   (interactive)
   (debug-print "fmt.Printf(\"MY DEBUG MARKER " " %v\\n\", )"))
 
+(defun go-if-err (preerr posterr)
+  (let ((action (format "%serr%s" preerr posterr)))
+    (dolist (line `("if err != nil {"
+                    ,action
+                    "}"))
+      (insert line)
+      (indent-for-tab-command)
+      (newline))
+    (delete-backward-char 1))) ; one too many newlines
+
 (defun go-return-if-err ()
   (interactive)
-  (dolist (line '("if err != nil {"
-                  "return err"
-                  "}"))
-    (insert line)
-    (indent-for-tab-command)
-    (newline))
-  (delete-backward-char 1)) ; one too many newlines
+  (go-if-err "return " ""))
+
+(defun go-panic-if-err ()
+  (interactive)
+  (go-if-err "panic(" ")"))
 
 (defun hy-debug-print ()
   (interactive)
@@ -312,7 +320,7 @@
 
 ;; C (?!)
 (setq c-basic-offset 4)
-(setq c-default-style "linux")
+(setq c-default-style "k&r")
 
 ;; dayjob-specific configuration
 (defconst dayjob-config "~/.emacs.d/dayjob.el")
