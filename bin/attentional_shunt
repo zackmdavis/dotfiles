@@ -36,6 +36,7 @@ HEADER = "# below managed by attentional shunt"
 INVERSE_COMMANDS = {'enable': "disable", 'disable': "enable"}
 
 DISTRACTING_HOSTS = (  # modify as needed
+    'reddit.com',
     'news.ycombinator.com',
     'math.stackexchange.com',
     'scifi.stackexchange.com',
@@ -61,6 +62,12 @@ def conditionally_reexec_with_sudo():
         os.execvp("sudo", ["sudo"] + sys.argv)
 
 
+def is_enabled():
+    with open(ETC_HOSTS) as etc_hosts:
+        content = etc_hosts.read()
+    return HEADER in content
+
+
 def enable_shunt():
     if is_enabled():
         return  # nothing to do
@@ -69,18 +76,10 @@ def enable_shunt():
 
 
 def disable_shunt():
-    with open(ETC_HOSTS) as etc_hosts:
-        content = etc_hosts.read()
-    if SHUNTING_LINES not in content:
+    if not is_enabled():
         return  # nothing to do
     with open(ETC_HOSTS, 'w') as etc_hosts:
         etc_hosts.write(content.replace(SHUNTING_LINES, ''))
-
-
-def is_enabled():
-    with open(ETC_HOSTS) as etc_hosts:
-        content = etc_hosts.read()
-    return HEADER in content
 
 
 def status():
