@@ -36,7 +36,7 @@ HEADER = "# below managed by attentional shunt"
 INVERSE_COMMANDS = {'enable': "disable", 'disable': "enable"}
 
 DISTRACTING_HOSTS = (  # modify as needed
-    'reddit.com',
+    'www.reddit.com',
     'news.ycombinator.com',
     'math.stackexchange.com',
     'scifi.stackexchange.com',
@@ -78,6 +78,8 @@ def enable_shunt():
 def disable_shunt():
     if not is_enabled():
         return  # nothing to do
+    with open(ETC_HOSTS) as etc_hosts:
+        content = etc_hosts.read()
     with open(ETC_HOSTS, 'w') as etc_hosts:
         etc_hosts.write(content.replace(SHUNTING_LINES, ''))
 
