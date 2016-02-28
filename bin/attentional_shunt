@@ -105,7 +105,7 @@ if __name__ == "__main__":
                             choices=("enable", "disable", "status"))
     arg_parser.add_argument('duration', nargs='?', type=int,
                             help=("revert state change after this many "
-                                  "minutes (with one-minute warning)"))
+                                  "minutes"))
     args = arg_parser.parse_args()
     if args.command == "status":
         status()
