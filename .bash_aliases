@@ -30,6 +30,12 @@ alias grports="netstat -tulpn | grep"
 # Vagrant
 alias v="vagrant"
 
+# the only thing I use `sed` for
+function replace ()
+{
+    find . -type f -print0 | xargs -0 sed -i "s/$1/$2/g"
+}
+
 # Python virtualenv
 function sba ()
 {
