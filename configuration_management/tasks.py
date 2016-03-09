@@ -193,6 +193,14 @@ def export_gopath_in_bashrc():
 
 
 @task
+@not_if_content_in_file("cargo/bin", "/home/zmd/.bashrc")
+def export_cargo_bins_in_bashrc():
+    cargo_bin_dirs = ["~/.multirust/toolchains/{}/cargo/bin".format(toolchain)
+                      for toolchain in ('stable', 'nightly')]
+    run("echo 'export PATH=$PATH:{}:{}' >> ~/.bashrc".format(*cargo_bin_dirs))
+
+
+@task
 def install_goimports():
     run("go get golang.org/x/tools/cmd/goimports")
 
