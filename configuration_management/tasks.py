@@ -211,7 +211,12 @@ def install_goimports():
 
 ## particular applications
 
-# TODO: (multi)Rust
+@task
+def install_multirust():
+    run("curl https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh > /tmp/blastoff.sh")
+    run("chmod +x /tmp/blastoff.sh")
+    run("/tmp/blastoff.sh")
+
 
 @task
 def install_leiningen(path="/usr/local/bin/lein"):
