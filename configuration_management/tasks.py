@@ -205,16 +205,27 @@ def install_goimports():
     run("go get golang.org/x/tools/cmd/goimports")
 
 
-# TODO: append /home/zmd/bin to $PATH
+@task
+@not_if_content_in_file("~/bin", "/home/zmd/.bashrc")
+def export_home_bin_in_path():
+    run("echo 'PATH=$PATH:~/bin' >> ~/.bashrc")
+
+
+@task
+@not_if_content_in_file("ctrl:nocaps", "/home/zmd/.bashrc")
+def no_caps_lock():
+    run("echo 'setxkbmap -layout us -option ctrl:nocaps' >> ~/.bashrc")
+
+
+# TODO: abstract "appending to .bashrc" into own function
 # set revert-all-at-newline on
-# setxkbmap -layout us -option ctrl:nocaps
 
 ## particular applications
 
 @task
 def install_multirust():
     run("curl https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh > /tmp/blastoff.sh")
-    run("chmod +x /tmp/blastoff.sh")
+    mark_executable("/tmp/blastoff.sh")
     run("/tmp/blastoff.sh")
 
 
