@@ -247,4 +247,4 @@ def install_virtualbox():
     run("wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -")
     run("sudo sh -c 'echo \"deb http://download.virtualbox.org/virtualbox/debian trusty contrib\" >> /etc/apt/sources.list.d/virtualbox.list'")
     apt_get_update()
-    apt_get_install("virtualbox-4.3")
+    apt_get_install("virtualbox-5.0")
