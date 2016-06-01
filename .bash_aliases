@@ -33,6 +33,10 @@ alias v="vagrant"
 # the only thing I use `sed` for
 function replace ()
 {
+    if [[ -z "$1" ]] || [[ -z "$2" ]]; then
+        echo "for non-disastrous results, this function needs two arguments"
+        return 2
+    fi
     find . -type f -print0 | xargs -0 sed -i "s/$1/$2/g"
 }
 
