@@ -40,9 +40,9 @@
   (load-theme 'an-algorithmic-luciditheme t))
 (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
-;; about halfway between San Francisco and Walnut Creek
-(setq calendar-latitude 37.8448)
-(setq calendar-longitude -122.2490)
+;; 63rd & Adeline
+(setq calendar-latitude 37.847392)
+(setq calendar-longitude -122.272995)
 
 ;; enhanced commands
 
