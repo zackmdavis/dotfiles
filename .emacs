@@ -308,6 +308,11 @@
   (setq buffer-read-only nil))
 (add-hook 'git-rebase-mode-hook 'my-anti-git-rebase-mode-hook)
 
+(defun my-hexl-mode-hook ()
+  ;; don't override my global window navigation bindings
+  (define-key hexl-mode-map [M-left] nil)
+  (define-key hexl-mode-map [M-right] nil))
+(add-hook 'hexl-mode-hook 'my-hexl-mode-hook)
 
 ;; Go
 (defun my-go-mode-hook ()
