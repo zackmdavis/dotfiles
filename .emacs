@@ -195,6 +195,10 @@
       (newline))
     (delete-backward-char 1))) ; one too many newlines
 
+(defun go-logrus ()
+  (interactive)
+  (insert "log \"github.com/Sirupsen/logrus\""))
+
 (defun go-return-if-err ()
   (interactive)
   (go-if-err "return " ""))
