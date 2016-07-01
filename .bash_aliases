@@ -34,6 +34,9 @@ alias gre="env | grep"
 alias grps="ps aux | grep"
 alias grports="netstat -tulpn | grep"
 
+# cat
+alias 🐱="cat"
+
 # Vagrant
 alias v="vagrant"
 
