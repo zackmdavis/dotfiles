@@ -1,7 +1,7 @@
 # -*- mode: sh; -*-
 
 alias sudo="sudo "
-alias r="reset"
+alias r="tput reset"
 
 # Git
 
