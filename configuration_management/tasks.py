@@ -138,7 +138,6 @@ def symlink_dotfiles():
     else:
         print("dotfiles repository already exists, continuing ...")
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
-                   '.ipython/profile_default/ipython_config.py',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws')
     for dotfile in my_dotfiles:
         if not os.path.islink("/home/zmd/" + dotfile):
