@@ -179,8 +179,8 @@ def make_home_bin_dir():
 @task
 def install_go():
     run("cd /tmp")
-    run("wget https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz")
-    run("sudo tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz")
+    run("wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz")
+    run("sudo tar -C /usr/local -xzf go1.7.1.linux-amd64.tar.gz")
 
 
 @task
