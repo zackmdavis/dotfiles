@@ -7,6 +7,8 @@ from invoke import task, run
 
 # bootstap the ability to run these tasks by getting Python 3 and Invoke
 
+# XXX TODO: update to new Invoke (this seems to work with 0.10, possibly a
+# little later)
 
 # general task helpers
 
