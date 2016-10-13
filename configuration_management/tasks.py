@@ -135,10 +135,6 @@ def install_deb(deb_url):
 
 @task
 def symlink_dotfiles():
-    if not os.path.exists(DOTFILES_REPO_PATH):
-        my_github_clone(repository)
-    else:
-        print("dotfiles repository already exists, continuing ...")
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws')
     for dotfile in my_dotfiles:
