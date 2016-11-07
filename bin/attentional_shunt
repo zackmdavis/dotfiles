@@ -51,6 +51,9 @@ DISTRACTING_HOSTS = (  # modify as needed
     'www.facebook.com',
     'slatestarscratchpad.tumblr.com',
     'sillyolme.wordpress.com',
+    'transkids.us',
+    'internals.rust-lang.org',
+    'thingofthings.wordpress.com',
 )
 SHUNTING_LINES = "\n{}\n{}\n".format(
     HEADER,
