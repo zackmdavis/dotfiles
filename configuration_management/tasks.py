@@ -62,7 +62,7 @@ def apt_get_install(packages):
 MY_APT_PACKAGES = ("emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
                    "gitk", "pandoc", "at",
                    "silversearcher-ag", "default-jre", "chromium-browser", "sqlite",
-                   "lm-sensors",
+                   "lm-sensors", "htop",
                    "python-dev", "tig", "git-flow",
                    "redshift", "cowsay", "build-essential", "dkms", "libreadline-dev",
                    "nodejs", "npm", "git-review")
