@@ -239,9 +239,15 @@ def install_vagrant():
     install_deb(vagrant_deb_url)
 
 
+
 @task
-def install_virtualbox():
+@not_if_content_in_file("debian trusty contrib", "/etc/apt/sources.list.d/virtualbox.list")
+def add_oracle_repo():
     run("wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -")
     run("sudo sh -c 'echo \"deb http://download.virtualbox.org/virtualbox/debian trusty contrib\" >> /etc/apt/sources.list.d/virtualbox.list'")
+
+@task
+def install_virtualbox():
+    add_oracle_repo()
     apt_get_update()
-    apt_get_install("virtualbox-5.0")
+    apt_get_install("virtualbox-5.1")
