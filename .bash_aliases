@@ -16,11 +16,19 @@ alias gdc="git diff --cached"
 alias gl="git log"
 alias gg="git log --graph --oneline --decorate"
 
-function rebase_on_master () {
-    git checkout master
+function rebase_on () {
+    git checkout "$1"
     git pull
     git checkout -
-    git rebase master
+    git rebase "$1"
+}
+
+function rebase_on_master () {
+    rebase_on master
+}
+
+function rebase_on_development () {
+    rebase_on development
 }
 
 # Emacs
