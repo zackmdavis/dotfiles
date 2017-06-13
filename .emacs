@@ -256,7 +256,9 @@
          (html-filename (format "%s.html" basename)))
     (shell-command (format "pandoc -o %s %s"
                            html-filename (buffer-file-name)))
-    (find-file-other-window html-filename)))
+    (find-file-other-window html-filename)
+    (beginning-of-buffer)
+    (insert "<!DOCTYPE html><meta charset=\"utf-8\"/>\n")))
 
 (defun fullscreen ()
   ;; from http://www.emacswiki.org/emacs/FullScreen
