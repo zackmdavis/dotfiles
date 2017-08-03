@@ -261,6 +261,31 @@
   (insert "<!DOCTYPE html><meta charset=\"utf-8\"/>\n")
   (save-buffer))
 
+(defun markdown-to-wordpress-comment ()
+  ;; WordPress doesn't handle `<p>` tags in comments, and I don't like
+  ;; entity-encoding ... that is, basically, I just don't want to have to type
+  ;; `<a href=`
+  (interactive)
+  (let* ((basename (file-name-sans-extension (buffer-file-name)))
+         (html-filename (format "%s.html" basename)))
+    (shell-command (format "pandoc -o %s %s"
+                           html-filename (buffer-file-name)))
+    (find-file-other-window html-filename))
+  (beginning-of-buffer)
+  (while (re-search-forward "</p>\n<p>" nil t)
+    (replace-match "\n\n"))
+  (beginning-of-buffer)
+  (while (re-search-forward "&quot;" nil t)
+    (replace-match "\""))
+  (beginning-of-buffer)
+  (while (re-search-forward "<p>" nil t)
+    (replace-match ""))
+  (beginning-of-buffer)
+  (while (re-search-forward "</p>" nil t)
+    (replace-match ""))
+  (beginning-of-buffer)
+  (save-buffer))
+
 (defun fullscreen ()
   ;; from http://www.emacswiki.org/emacs/FullScreen
   (interactive)
