@@ -373,13 +373,9 @@
               '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(defconst my-packages '(clojure-mode racket-mode rust-mode web-mode less-css-mode yaml-mode magit))
-
-;; Using a Git clone instead of package management for the moment
-;; because I've hacked on this at least once and might do so again
-(defconst hy-mode-path "~/.emacs.d/hy-mode/hy-mode.el")
-(when (file-exists-p hy-mode-path)
-  (load-file hy-mode-path))
+(defconst my-packages '(clojure-mode
+                        racket-mode rust-mode web-mode
+                        less-css-mode yaml-mode magit hy-mode))
 
 
 ;; I've been writing a programming language lately
