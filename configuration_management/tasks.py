@@ -120,7 +120,7 @@ def append_to_bashrc(ctx, line):
     with open(bashrc_path, 'w') as bashrc:
         bashrc.write(content)
 
-        
+
 ## generalized tasks
 
 @task
@@ -142,7 +142,8 @@ def install_deb(ctx, deb_url):
 @task
 def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
-                   '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws')
+                   '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws',
+                   '.gitconfig')
     for dotfile in my_dotfiles:
         if not os.path.islink("/home/zmd/" + dotfile):
             print("linking {}".format(dotfile))

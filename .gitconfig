@@ -1,6 +1,6 @@
 [user]
 	name = Zack M. Davis
-	#email = [redacted]
+	email = code@zackmdavis.net
 [core]
 	editor = emacs -nw
 [alias]
@@ -8,5 +8,3 @@
 	a = add
 	co = commit
 	ch = checkout
-[push]
-	default = simple
