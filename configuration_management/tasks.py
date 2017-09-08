@@ -7,8 +7,8 @@ from invoke import task, run
 
 # bootstap the ability to run these tasks by getting Python 3 and Invoke
 
-# XXX TODO: update to new Invoke (this seems to work with 0.10, possibly a
-# little later)
+HOME = os.path.join(os.sep, 'home', 'zmd')
+DOTFILES_REPO_PATH = os.path.join(HOME, 'Code', 'dotfiles')
 
 # general task helpers
 
@@ -52,24 +52,23 @@ def not_if_any_is_symlink(*paths):
 # apt
 
 @task
-def apt_get_update():
+def apt_get_update(ctx):
     run("sudo apt-get update")
 
 @task
-def apt_get_install(packages):
-    run("sudo apt-get install {}".format(packages))
+def apt_get_install(ctx, packages):
+    ctx.run("sudo apt-get install {}".format(packages))
 
-MY_APT_PACKAGES = ("emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
-                   "gitk", "pandoc", "at",
-                   "silversearcher-ag", "default-jre", "chromium-browser", "sqlite",
-                   "lm-sensors", "htop",
-                   "python-dev", "tig", "git-flow",
-                   "redshift", "cowsay", "build-essential", "dkms", "libreadline-dev",
-                   "nodejs", "npm", "git-review")
+MY_APT_PACKAGES = [
+    "emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
+    "gitk", "pandoc", "at", "silversearcher-ag", "default-jre",
+    "chromium-browser", "sqlite", "lm-sensors", "htop", "redshift",
+    "build-essential", "dkms", "libreadline-dev", "nodejs", "npm",
+]
 
 @task
-def apt_get_my_packages():
-    apt_get_install(" ".join(package for package in MY_APT_PACKAGES))
+def apt_get_my_packages(ctx):
+    apt_get_install(ctx, " ".join(package for package in MY_APT_PACKAGES))
 
 
 # pip
@@ -77,177 +76,176 @@ def apt_get_my_packages():
 MY_PIP_PACKAGES = ("pudb", "invoke", "ipython", "hy")
 
 @task
-def pip_install(packages, sudo=True, upgrade=False):
-    run("sudo pip3 install {}".format(packages))
+def pip_install(ctx, packages, sudo=True, upgrade=False):
+    ctx.run("sudo pip3 install {}".format(packages))
 
 @task
-def pip_install_my_packages():
-    pip_install(" ".join(package for package in MY_PIP_PACKAGES))
+def pip_install_my_packages(ctx):
+    pip_install(ctx, " ".join(package for package in MY_PIP_PACKAGES))
 
 
 # git
 
-def git_clone(origin, destination):
-    run("git clone {} {}".format(origin, destination))
+def git_clone(ctx, origin, destination):
+    ctx.run("git clone {} {}".format(origin, destination))
 
 @task
-def github_clone(user, repository, destination=None):
+def github_clone(ctx, user, repository, destination=None):
     if not destination:
         destination = "~/Code/{}".format(repository)
-    git_clone("git@github.com:{user}/{repository}.git".format(**locals()),
+    git_clone(ctx, "git@github.com:{user}/{repository}.git".format(**locals()),
               destination)
 
 
 # files
 
 @task
-def make_dir_in_home(subpath):
+def make_dir_in_home(ctx, subpath):
     os.mkdir("/home/zmd/" + path, 0o775)
 
 @task
-def mark_executable(path, sudo=False):
-    run("{}chmod +x {}".format("sudo " if sudo else '', path))
+def mark_executable(ctx, path, sudo=False):
+    ctx.run("{}chmod +x {}".format("sudo " if sudo else '', path))
 
 
+@task
+def append_to_bashrc(ctx, line):
+    bashrc_path = os.path.join(HOME, ".bashrc")
+    with open(bashrc_path) as bashrc:
+        content = bashrc.read()
+    if line in content:
+        print("line {!r} already present in .bashrc".format(line))
+        return
+    content += "{}\n".format(line)
+    with open(bashrc_path, 'w') as bashrc:
+        bashrc.write(content)
 
-# development setup
-
-HOME = os.path.join(os.sep, 'home', 'zmd')
-DOTFILES_REPO_PATH = os.path.join(HOME, 'Code', 'dotfiles')
-
+        
 ## generalized tasks
 
 @task
-def my_github_clone(repository):
-    github_clone("zackmdavis", repository, "/home/zmd/Code/" + repository)
+def my_github_clone(ctx, repository):
+    github_clone(ctx, "zackmdavis", repository, "/home/zmd/Code/" + repository)
 
 @task
-def install_deb(deb_url):
+def install_deb(ctx, deb_url):
     local_destination = "/tmp/{}".format(deb_url.rsplit('/', 1)[1])
     if not os.path.exists(local_destination):
         urllib.request.urlretrieve(
             deb_url, local_destination
         )
-    run("sudo dpkg -i {}".format(local_destination))
+    ctx.run("sudo dpkg -i {}".format(local_destination))
 
 
 ## configuration
 
 @task
-def symlink_dotfiles():
+def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws')
     for dotfile in my_dotfiles:
         if not os.path.islink("/home/zmd/" + dotfile):
             print("linking {}".format(dotfile))
-            run("ln -s /home/zmd/Code/dotfiles/{0} /home/zmd/{0}".format(dotfile))
+            ctx.run("ln -s /home/zmd/Code/dotfiles/{0} /home/zmd/{0}".format(dotfile))
         else:
             print("{} symlink already exists, continuing ...".format(dotfile))
 
 @task
-def symlink_dayjob_dotfiles():
-    ... # TODO
-
-@task
-def symlink_scripts():
+def symlink_scripts(ctx):
     for script in os.listdir(os.path.join(DOTFILES_REPO_PATH, 'bin')):
         dotfiles_script_path = os.path.join(DOTFILES_REPO_PATH, 'bin', script)
         bin_script_path = os.path.join(HOME, 'bin', script)
         if not os.path.islink(bin_script_path):
             print("linking {}".format(script))
-            run("ln -s {} {}".format(dotfiles_script_path, bin_script_path))
+            ctx.run("ln -s {} {}".format(dotfiles_script_path, bin_script_path))
         else:
             print("{} symlink already exists, continuing ...".format(script))
 
 
 @task
-def install_gitconfig():
-    run("cp {}/.gitconfig /home/zmd/.gitconfig".format(DOTFILES_REPO_PATH))
+def install_gitconfig(ctx):
+    ctx.run("cp {}/.gitconfig /home/zmd/.gitconfig".format(DOTFILES_REPO_PATH))
 
 
 @task
-def generate_ssh_keys(email, machine):
-    run("ssh-keygen -t rsa -b 4096 -C \"{} ({})\"".format(email, machine))
+def generate_ssh_keys(ctx, email, machine):
+    ctx.run("ssh-keygen -t rsa -b 4096 -C \"{} ({})\"".format(email, machine))
 
 @task
-def make_home_bin_dir():
-    run("mkdir -p /home/zmd/bin")
-
-
-@task
-def install_go():
-    run("cd /tmp")
-    run("wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz")
-    run("sudo tar -C /usr/local -xzf go1.7.1.linux-amd64.tar.gz")
+def make_home_bin_dir(ctx):
+    ctx.run("mkdir -p /home/zmd/bin")
 
 
 @task
-@not_if_content_in_file("GOPATH", "/home/zmd/.bashrc")
-def export_gopath_in_bashrc():
-    run("echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc")
-    run("echo 'export GOPATH=~/Code/go_workspace' >> ~/.bashrc")
-    run("echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc")
+def install_go(ctx):
+    ctx.run("cd /tmp")
+    # TODO: tarball will have changed
+    ctx.run("wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz")
+    ctx.run("sudo tar -C /usr/local -xzf go1.7.1.linux-amd64.tar.gz")
 
 
 @task
-@not_if_content_in_file("cargo/bin", "/home/zmd/.bashrc")
-def export_cargo_bins_in_bashrc():
-    cargo_bin_dirs = ["~/.multirust/toolchains/{}/cargo/bin".format(toolchain)
-                      for toolchain in ('stable', 'nightly')]
-    run("echo 'export PATH=$PATH:{}:{}' >> ~/.bashrc".format(*cargo_bin_dirs))
+def export_gopath_in_bashrc(ctx):
+    ctx.run("echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc")
+    ctx.run("echo 'export GOPATH=~/Code/go_workspace' >> ~/.bashrc")
+    ctx.run("echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc")
+
+@task
+def install_goimports(ctx):
+    ctx.run("go get golang.org/x/tools/cmd/goimports")
 
 
 @task
-def install_goimports():
-    run("go get golang.org/x/tools/cmd/goimports")
+def export_home_bin_in_path(ctx):
+    append_to_bashrc(ctx, "PATH=$PATH:~/bin")
 
 
 @task
-@not_if_content_in_file("~/bin", "/home/zmd/.bashrc")
-def export_home_bin_in_path():
-    run("echo 'PATH=$PATH:~/bin' >> ~/.bashrc")
-
+def no_caps_lock(ctx):
+    append_to_bashrc(ctx, "setxkbmap -layout us -option ctrl:nocaps")
 
 @task
-@not_if_content_in_file("ctrl:nocaps", "/home/zmd/.bashrc")
-def no_caps_lock():
-    run("echo 'setxkbmap -layout us -option ctrl:nocaps' >> ~/.bashrc")
+def no_edit_terminal_history(ctx):
+    append_to_bashrc(ctx, "bind 'revert-all-at-newline on'")
 
-
-# TODO: abstract "appending to .bashrc" into own function
-# set revert-all-at-newline on
 
 ## particular applications
 
-@task
-def install_multirust():
-    run("curl https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh > /tmp/blastoff.sh")
-    mark_executable("/tmp/blastoff.sh")
-    run("/tmp/blastoff.sh")
-
 
 @task
-def install_leiningen(path="/usr/local/bin/lein"):
-    run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")
-    run("sudo cp /tmp/lein {}".format(path))
+def install_leiningen(ctx, path="/usr/local/bin/lein"):
+    ctx.run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")
+    ctx.run("sudo cp /tmp/lein {}".format(path))
     mark_executable(path, sudo=True)
 
 
 @task
-def install_vagrant():
+def install_vagrant(ctx):
+    # TODO: debball or other installation method will have changed
     vagrant_deb_url = "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.deb"
-    install_deb(vagrant_deb_url)
-
+    install_deb(ctx, vagrant_deb_url)
 
 
 @task
-@not_if_content_in_file("debian trusty contrib", "/etc/apt/sources.list.d/virtualbox.list")
-def add_oracle_repo():
-    run("wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -")
-    run("sudo sh -c 'echo \"deb http://download.virtualbox.org/virtualbox/debian trusty contrib\" >> /etc/apt/sources.list.d/virtualbox.list'")
+def add_oracle_repo(ctx):
+    # TODO: check if current
+    ctx.run("wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -")
+    ctx.run("sudo sh -c 'echo \"deb http://download.virtualbox.org/virtualbox/debian trusty contrib\" >> /etc/apt/sources.list.d/virtualbox.list'")
 
 @task
-def install_virtualbox():
-    add_oracle_repo()
-    apt_get_update()
-    apt_get_install("virtualbox-5.1")
+def install_virtualbox(ctx):
+    add_oracle_repo(ctx)
+    apt_get_update(ctx)
+    # TODO: check if current
+    apt_get_install(ctx, "virtualbox-5.1")
+
+
+@task
+def simple_move_in(ctx):
+    apt_get_my_packages(ctx)
+    pip_install_my_packages(ctx)
+    symlink_dotfiles(ctx)
+    make_home_bin_dir(ctx)
+    symlink_scripts(ctx)
+    no_caps_lock(ctx)
+    no_edit_terminal_history(ctx)
