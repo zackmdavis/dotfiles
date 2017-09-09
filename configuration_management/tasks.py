@@ -176,30 +176,9 @@ def generate_ssh_keys(ctx, email, machine):
 def make_home_bin_dir(ctx):
     ctx.run("mkdir -p /home/zmd/bin")
 
-
-@task
-def install_go(ctx):
-    ctx.run("cd /tmp")
-    # TODO: tarball will have changed
-    ctx.run("wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz")
-    ctx.run("sudo tar -C /usr/local -xzf go1.7.1.linux-amd64.tar.gz")
-
-
-@task
-def export_gopath_in_bashrc(ctx):
-    ctx.run("echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc")
-    ctx.run("echo 'export GOPATH=~/Code/go_workspace' >> ~/.bashrc")
-    ctx.run("echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc")
-
-@task
-def install_goimports(ctx):
-    ctx.run("go get golang.org/x/tools/cmd/goimports")
-
-
 @task
 def export_home_bin_in_path(ctx):
     append_to_bashrc(ctx, "PATH=$PATH:~/bin")
-
 
 @task
 def no_caps_lock(ctx):
@@ -220,26 +199,7 @@ def install_leiningen(ctx, path="/usr/local/bin/lein"):
     mark_executable(path, sudo=True)
 
 
-@task
-def install_vagrant(ctx):
-    # TODO: debball or other installation method will have changed
-    vagrant_deb_url = "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.deb"
-    install_deb(ctx, vagrant_deb_url)
-
-
-@task
-def add_oracle_repo(ctx):
-    # TODO: check if current
-    ctx.run("wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -")
-    ctx.run("sudo sh -c 'echo \"deb http://download.virtualbox.org/virtualbox/debian trusty contrib\" >> /etc/apt/sources.list.d/virtualbox.list'")
-
-@task
-def install_virtualbox(ctx):
-    add_oracle_repo(ctx)
-    apt_get_update(ctx)
-    # TODO: check if current
-    apt_get_install(ctx, "virtualbox-5.1")
-
+# omnibus
 
 @task
 def simple_move_in(ctx):
