@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+    <head>
+        <title>QuiteRSS</title>
+        <dateModified>Sun Sep 10 16:14:19 2017</dateModified>
+    </head>
+    <body>
+        <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
+        <outline text="Comics">
+            <outline text="Dumbing of Age" type="rss" htmlUrl="http://www.dumbingofage.com" xmlUrl="http://www.dumbingofage.com/feed/"/>
+            <outline text="Questionable Content" type="rss" htmlUrl="http://www.questionablecontent.net" xmlUrl="http://www.questionablecontent.net/QCRSS.xml"/>
+            <outline text="El Goonish Shive" type="rss" htmlUrl="http://www.egscomics.com/" xmlUrl="http://www.egscomics.com/rss.php"/>
+            <outline text="XKCD" type="rss" htmlUrl="https://xkcd.com/" xmlUrl="https://xkcd.com/rss.xml"/>
+            <outline text="Saturday Morning Breakfast Cereal" type="rss" htmlUrl="http://www.smbc-comics.com/" xmlUrl="http://www.smbc-comics.com/rss.php"/>
+        </outline>
+        <outline text="Blogs">
+            <outline text="Slate Star Codex" type="rss" htmlUrl="http://slatestarcodex.com" xmlUrl="http://slatestarcodex.com/feed/"/>
+            <outline text="On the Science of Changing Sex" type="rss" htmlUrl="https://sillyolme.wordpress.com" xmlUrl="https://sillyolme.wordpress.com/feed/"/>
+            <outline text="Unstable Ontology" type="rss" htmlUrl="https://unstableontology.com" xmlUrl="https://unstableontology.com/feed/"/>
+            <outline text="Otium" type="rss" htmlUrl="https://srconstantin.wordpress.com" xmlUrl="https://srconstantin.wordpress.com/feed/"/>
+            <outline text="Meteuphoric" type="rss" htmlUrl="https://meteuphoric.wordpress.com" xmlUrl="https://meteuphoric.wordpress.com/feed/"/>
+            <outline text="David R. MacIver" type="rss" htmlUrl="http://www.drmaciver.com" xmlUrl="http://www.drmaciver.com/blog/feed/"/>
+            <outline text="Compass Rose" type="rss" htmlUrl="http://benjaminrosshoffman.com" xmlUrl="http://benjaminrosshoffman.com/feed/"/>
+            <outline text="The Story's Story" type="rss" htmlUrl="https://jakeseliger.com" xmlUrl="https://jakeseliger.com/feed/"/>
+            <outline text="Slate Star Scratchpad" type="rss" htmlUrl="https://slatestarscratchpad.tumblr.com/" xmlUrl="https://slatestarscratchpad.tumblr.com/rss"/>
+            <outline text="Survey Anon's Gender Blog" type="rss" htmlUrl="https://surveyanon.wordpress.com" xmlUrl="https://surveyanon.wordpress.com/feed/"/>
+            <outline text="Third Way Trans" type="rss" htmlUrl="https://thirdwaytrans.com" xmlUrl="https://thirdwaytrans.com/feed/"/>
+            <outline text="Thing of Things" type="rss" htmlUrl="https://thingofthings.wordpress.com" xmlUrl="https://thingofthings.wordpress.com/feed/"/>
+            <outline text="Paula Wright" type="rss" htmlUrl="https://porlawright.com" xmlUrl="https://porlawright.com/feed/"/>
+            <outline text="Don't Worry About the Vase" type="rss" htmlUrl="https://thezvi.wordpress.com" xmlUrl="https://thezvi.wordpress.com/feed/"/>
+            <outline text="The Rationalist Conspiracy" type="rss" htmlUrl="https://rationalconspiracy.com" xmlUrl="https://rationalconspiracy.com/feed/"/>
+            <outline text="Mathemusicality" type="rss" htmlUrl="https://mathemusicality.wordpress.com" xmlUrl="https://mathemusicality.wordpress.com/feed/"/>
+            <outline text="The Unit of Caring" type="rss" htmlUrl="https://theunitofcaring.tumblr.com/" xmlUrl="https://theunitofcaring.tumblr.com/rss"/>
+            <outline text="Carey Callahan" type="rss" htmlUrl="https://careycallahan.com" xmlUrl="https://careycallahan.com/feed/"/>
+            <outline text="Crossdreamers" type="rss" htmlUrl="http://www.crossdreamers.com/" xmlUrl="http://feeds.feedburner.com/autogynephiliac"/>
+            <outline text="Shtetl-Optimized" type="rss" htmlUrl="https://www.scottaaronson.com/blog" xmlUrl="https://www.scottaaronson.com/blog/?feed=rss2"/>
+            <outline text="Information Processing" type="rss" htmlUrl="http://infoproc.blogspot.com/" xmlUrl="http://infoproc.blogspot.com/feeds/posts/default"/>
+            <outline text="West Hunter" type="rss" htmlUrl="https://westhunt.wordpress.com" xmlUrl="https://westhunt.wordpress.com/feed/"/>
+        </outline>
+    </body>
+</opml>
