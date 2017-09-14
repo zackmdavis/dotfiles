@@ -53,11 +53,18 @@ def not_if_any_is_symlink(*paths):
 
 @task
 def apt_get_update(ctx):
-    run("sudo apt-get update")
+    ctx.sudo("apt-get update")
 
 @task
 def apt_get_install(ctx, packages):
-    ctx.run("sudo apt-get install {}".format(packages))
+    ctx.sudo("apt-get install {}".format(packages))
+
+@task
+def apt_add_key(ctx, key_url):
+    *_, key_name = key_url.split('/')
+    ctx.run("wget -P /tmp/ '{}'".format(key_url))
+    ctx.sudo("apt-key add /tmp/{}".format(key_name))
+
 
 MY_APT_PACKAGES = [
     "emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
@@ -197,6 +204,14 @@ def install_leiningen(ctx, path="/usr/local/bin/lein"):
     ctx.run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")
     ctx.run("sudo cp /tmp/lein {}".format(path))
     mark_executable(path, sudo=True)
+
+
+@task
+def install_tarsnap(ctx):
+    apt_add_key(ctx, "https://pkg.tarsnap.com/tarsnap-deb-packaging-key.asc")
+    ctx.sudo("sh -c 'echo \"deb http://pkg.tarsnap.com/deb/$(lsb_release -s -c) ./\" >> /etc/apt/sources.list.d/tarsnap.list'")
+    apt_get_update(ctx)
+    apt_get_install(ctx, "tarsnap")
 
 
 # omnibus
