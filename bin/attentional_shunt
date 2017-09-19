@@ -52,6 +52,7 @@ DISTRACTING_HOSTS = (  # modify as needed
     'sillyolme.wordpress.com',
     'transkids.us',
     'internals.rust-lang.org',
+    'www.youtube.com',
 )
 SHUNTING_LINES = "\n{}\n{}\n".format(
     HEADER,
