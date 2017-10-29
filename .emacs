@@ -235,6 +235,10 @@
 (defconst github-commmit-url-format-string
   "https://github.com/%s/%s/commit/%s/")
 
+(setq browse-url-generic-program
+    (executable-find (or (getenv "BROWSER") "firefox"))
+     browse-url-browser-function 'browse-url-generic)
+
 (defun browse-github-sha (owner repository sha)
   (browse-url (format github-commmit-url-format-string
                       owner repository sha)))
