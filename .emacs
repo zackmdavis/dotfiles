@@ -378,7 +378,7 @@
 (package-initialize)
 
 (defconst my-packages '(clojure-mode
-                        racket-mode rust-mode web-mode
+                        racket-mode rust-mode web-mode haskell-mode
                         less-css-mode yaml-mode magit hy-mode))
 
 
