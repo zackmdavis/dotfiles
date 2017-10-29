@@ -69,8 +69,14 @@ def apt_add_key(ctx, key_url):
 MY_APT_PACKAGES = [
     "emacs24", "python3", "python3-dev", "python3-tk", "curl", "git",
     "gitk", "pandoc", "at", "silversearcher-ag", "default-jre",
-    "chromium-browser", "sqlite", "lm-sensors", "htop", "redshift",
-    "build-essential", "dkms", "libreadline-dev", "nodejs", "npm",
+    "chromium-browser", "sqlite", "gimp", "lm-sensors", "htop", "redshift",
+    "build-essential", "dkms", "libreadline-dev",
+    "tree", "wdiff", "clang", "mnemosyne", "texlive-latex-base", "dvipng"
+]
+
+MY_SECOND_TIER_APT_PACKAGES = [
+    # I could imagine using these
+    "haskell-platform", "nodejs", "npm"
 ]
 
 @task
