@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Sat Oct 28 20:41:49 2017</dateModified>
+        <dateModified>Wed Nov 8 12:38:54 2017</dateModified>
     </head>
     <body>
         <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
@@ -32,7 +32,7 @@
             <outline text="Paula Wright" type="rss" htmlUrl="https://porlawright.com" xmlUrl="https://porlawright.com/feed/"/>
             <outline text="David R. MacIver" type="rss" htmlUrl="http://www.drmaciver.com" xmlUrl="http://www.drmaciver.com/blog/feed/"/>
             <outline text="Don't Worry About the Vase" type="rss" htmlUrl="https://thezvi.wordpress.com" xmlUrl="https://thezvi.wordpress.com/feed/"/>
-            <outline text="The Rationalist Conspiracy" type="rss" htmlUrl="http://rationalconspiracy.com" xmlUrl="https://rationalconspiracy.com/feed/"/>
+            <outline text="The Rationalist Conspiracy" type="rss" htmlUrl="https://rationalconspiracy.com" xmlUrl="https://rationalconspiracy.com/feed/"/>
             <outline text="Mathemusicality" type="rss" htmlUrl="https://mathemusicality.wordpress.com" xmlUrl="https://mathemusicality.wordpress.com/feed/"/>
             <outline text="The Unit of Caring" type="rss" htmlUrl="https://theunitofcaring.tumblr.com/" xmlUrl="https://theunitofcaring.tumblr.com/rss"/>
             <outline text="Carey Callahan" type="rss" htmlUrl="https://careycallahan.com" xmlUrl="https://careycallahan.com/feed/"/>
@@ -51,21 +51,33 @@
             <outline text="My Only Path to Power" type="rss" htmlUrl="https://nomoremilquetoast.com" xmlUrl="https://transwidow.wordpress.com/feed/"/>
             <outline text="Status 451" type="rss" htmlUrl="https://status451.com" xmlUrl="https://status451.com/feed/"/>
             <outline text="Stories by Marcus on Medium" type="rss" htmlUrl="https://medium.com/@LogicalMarcus?source=rss-8e5339c3ab6d------2" xmlUrl="https://medium.com/feed/@LogicalMarcus"/>
+            <outline text="Razib Khan" type="rss" htmlUrl="http://www.razib.com/wordpress" xmlUrl="http://feeds.feedburner.com/RazibKhansTotalFeed"/>
             <outline text="Stuart Spence Stuff" type="rss" htmlUrl="http://stuartspencestuff.blogspot.com/" xmlUrl="http://stuartspencestuff.blogspot.com/feeds/posts/default"/>
             <outline text="Yeyo's Corner" type="rss" htmlUrl="https://yeyoscorner.wordpress.com" xmlUrl="https://yeyoscorner.wordpress.com/feed/"/>
+            <outline text="Hivewired" type="rss" htmlUrl="https://hivewired.wordpress.com" xmlUrl="https://hivewired.wordpress.com/feed/"/>
+            <outline text="Siderea, Sibylla Bostoniensis" type="rss" htmlUrl="https://siderea.dreamwidth.org/" xmlUrl="https://siderea.dreamwidth.org/data/rss"/>
             <outline text="Acid Rational" type="rss" htmlUrl="http://acidrational.blogspot.com/" xmlUrl="https://acidrational.blogspot.com/feeds/posts/default"/>
             <outline text="Quillette" type="rss" htmlUrl="http://quillette.com" xmlUrl="http://quillette.com/feed/"/>
             <outline text="Armed and Dangerous" type="rss" htmlUrl="http://esr.ibiblio.org" xmlUrl="http://esr.ibiblio.org/?feed=rss2"/>
-            <outline text="Sibylla Bostoniensis" type="rss" htmlUrl="https://siderea.livejournal.com/" xmlUrl="http://siderea.livejournal.com/data/rss"/>
+            <outline text="Melting Asphalt" type="rss" htmlUrl="http://www.meltingasphalt.com" xmlUrl="http://feeds.feedburner.com/MeltingAsphalt"/>
+            <outline text="Overcoming Bias" type="rss" htmlUrl="http://www.overcomingbias.com" xmlUrl="http://www.overcomingbias.com/feed"/>
             <outline text="4thWaveNow" type="rss" htmlUrl="https://4thwavenow.com" xmlUrl="https://4thwavenow.com/feed/"/>
             <outline text="Aceso Under Glass" type="rss" htmlUrl="https://acesounderglass.com" xmlUrl="https://acesounderglass.com/feed/"/>
             <outline text="Non-Binary" type="rss" htmlUrl="https://non-binary.org" xmlUrl="https://non-binary.org/feed/"/>
             <outline text="Miranda Yardley" type="rss" htmlUrl="http://mirandayardley.com" xmlUrl="http://mirandayardley.com/en/feed/"/>
             <outline text="Jenn Smith" type="rss" htmlUrl="https://transanityca.wordpress.com" xmlUrl="https://transanityca.wordpress.com/feed/"/>
             <outline text="Justin Murphy" type="rss" htmlUrl="http://jmrphy.net/" xmlUrl="http://jmrphy.net/feed.xml"/>
+            <outline text="Evolutionist X" type="rss" htmlUrl="https://evolutionistx.wordpress.com" xmlUrl="https://evolutionistx.wordpress.com/feed/"/>
             <outline text="compwron" type="rss" htmlUrl="http://compwron.github.io/" xmlUrl="http://compwron.github.io/feed.xml"/>
             <outline text="Follow the Squirrel" type="rss" htmlUrl="http://followthesquirrel.blogspot.com/" xmlUrl="http://followthesquirrel.blogspot.com/feeds/posts/default"/>
             <outline text="Some Person Over Here" type="rss" htmlUrl="https://somepersonoverhere.wordpress.com" xmlUrl="https://somepersonoverhere.wordpress.com/feed/"/>
+            <outline text="Jeff Kaufman" type="rss" htmlUrl="http://www.jefftk.com/news/" xmlUrl="https://www.jefftk.com/news.rss"/>
+            <outline text="composition.al" type="rss" htmlUrl="http://composition.al/" xmlUrl="http://composition.al/atom.xml"/>
+            <outline text="Devin Helton" type="rss" htmlUrl="https://devinhelton.com" xmlUrl="https://devinhelton.com/rss.xml"/>
+            <outline text="Daniel Lemire" type="rss" htmlUrl="https://lemire.me/blog" xmlUrl="https://lemire.me/blog/feed/"/>
+            <outline text="Thoughts On Innovation" type="rss" htmlUrl="https://candicebrownelliott.wordpress.com" xmlUrl="https://candicebrownelliott.wordpress.com/feed/"/>
+            <outline text="Main Is Usually a Function" type="rss" htmlUrl="http://mainisusuallyafunction.blogspot.com/" xmlUrl="http://mainisusuallyafunction.blogspot.com/feeds/posts/default"/>
+            <outline text="Qualia Computing" type="rss" htmlUrl="https://qualiacomputing.com" xmlUrl="https://qualiacomputing.com/feed/"/>
         </outline>
     </body>
 </opml>
