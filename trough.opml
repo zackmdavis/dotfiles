@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Wed Nov 8 12:38:54 2017</dateModified>
+        <dateModified>Fri Nov 10 14:44:43 2017</dateModified>
     </head>
     <body>
         <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
@@ -18,6 +18,7 @@
             <outline text="An Algorithmic Lucidity" type="rss" htmlUrl="http://zackmdavis.net/blog" xmlUrl="http://zackmdavis.net/blog/feed/"/>
             <outline text="The Scintillating But Ultimately Untrue Thought" type="rss" htmlUrl="http://unremediatedgender.space/" xmlUrl="http://unremediatedgender.space/feeds/all.atom.xml"/>
             <outline text="Slate Star Codex" type="rss" htmlUrl="http://slatestarcodex.com" xmlUrl="http://slatestarcodex.com/feed/"/>
+            <outline text="Less Wrong 2" type="rss" htmlUrl="https://www.lesserwrong.com/" xmlUrl="https://www.lesserwrong.com/feed.xml"/>
             <outline text="Hacker News (300+ points)" type="rss" htmlUrl="https://news.ycombinator.com/newest" xmlUrl="https://hnrss.org/newest?points=300"/>
             <outline text="On the Science of Changing Sex" type="rss" htmlUrl="https://sillyolme.wordpress.com" xmlUrl="https://sillyolme.wordpress.com/feed/"/>
             <outline text="Unstable Ontology" type="rss" htmlUrl="https://unstableontology.com" xmlUrl="https://unstableontology.com/feed/"/>
@@ -78,6 +79,11 @@
             <outline text="Thoughts On Innovation" type="rss" htmlUrl="https://candicebrownelliott.wordpress.com" xmlUrl="https://candicebrownelliott.wordpress.com/feed/"/>
             <outline text="Main Is Usually a Function" type="rss" htmlUrl="http://mainisusuallyafunction.blogspot.com/" xmlUrl="http://mainisusuallyafunction.blogspot.com/feeds/posts/default"/>
             <outline text="Qualia Computing" type="rss" htmlUrl="https://qualiacomputing.com" xmlUrl="https://qualiacomputing.com/feed/"/>
+            <outline text="Eukaryote Writes Blog" type="rss" htmlUrl="https://eukaryotewritesblog.com" xmlUrl="https://eukaryotewritesblog.com/feed/"/>
+            <outline text="Hotel Concierge" type="rss" htmlUrl="https://hotelconcierge.tumblr.com/" xmlUrl="https://hotelconcierge.tumblr.com/rss"/>
+            <outline text="The 100% CI" type="rss" htmlUrl="http://www.the100.ci" xmlUrl="http://www.the100.ci/feed/"/>
+            <outline text="Julia Evans" type="rss" htmlUrl="http://jvns.ca" xmlUrl="https://jvns.ca/atom.xml"/>
+            <outline text="Paul Graham: Essays" type="rss" htmlUrl="http://www.paulgraham.com/" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
         </outline>
     </body>
 </opml>
