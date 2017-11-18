@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Fri Nov 10 14:44:43 2017</dateModified>
+        <dateModified>Fri Nov 17 13:18:50 2017</dateModified>
     </head>
     <body>
         <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
@@ -25,7 +25,7 @@
             <outline text="Otium" type="rss" htmlUrl="https://srconstantin.wordpress.com" xmlUrl="https://srconstantin.wordpress.com/feed/"/>
             <outline text="Meteuphoric" type="rss" htmlUrl="https://meteuphoric.wordpress.com" xmlUrl="https://meteuphoric.wordpress.com/feed/"/>
             <outline text="Compass Rose" type="rss" htmlUrl="http://benjaminrosshoffman.com" xmlUrl="http://benjaminrosshoffman.com/feed/"/>
-            <outline text="The Story's Story" type="rss" htmlUrl="https://jakeseliger.com" xmlUrl="https://jakeseliger.com/feed/"/>
+            <outline text="The Story's Story" type="rss" htmlUrl="http://jakeseliger.com" xmlUrl="https://jakeseliger.com/feed/"/>
             <outline text="Slate Star Scratchpad" type="rss" htmlUrl="https://slatestarscratchpad.tumblr.com/" xmlUrl="https://slatestarscratchpad.tumblr.com/rss"/>
             <outline text="Survey Anon's Gender Blog" type="rss" htmlUrl="https://surveyanon.wordpress.com" xmlUrl="https://surveyanon.wordpress.com/feed/"/>
             <outline text="Third Way Trans" type="rss" htmlUrl="https://thirdwaytrans.com" xmlUrl="https://thirdwaytrans.com/feed/"/>
@@ -84,6 +84,10 @@
             <outline text="The 100% CI" type="rss" htmlUrl="http://www.the100.ci" xmlUrl="http://www.the100.ci/feed/"/>
             <outline text="Julia Evans" type="rss" htmlUrl="http://jvns.ca" xmlUrl="https://jvns.ca/atom.xml"/>
             <outline text="Paul Graham: Essays" type="rss" htmlUrl="http://www.paulgraham.com/" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
+            <outline text="FiveThirtyEight Economics" type="rss" htmlUrl="https://fivethirtyeight.com" xmlUrl="https://fivethirtyeight.com/economics/feed/"/>
+            <outline text="FiveThirtyEight Science &amp; Health" type="rss" htmlUrl="https://fivethirtyeight.com" xmlUrl="https://fivethirtyeight.com/science/feed/"/>
+            <outline text="Bloody Shovel" type="rss" htmlUrl="https://bloodyshovel.wordpress.com" xmlUrl="https://bloodyshovel.wordpress.com/feed/"/>
+            <outline text="Erik McClure" type="rss" htmlUrl="http://blackhole12.blogspot.com/" xmlUrl="https://blackhole12.blogspot.com/feeds/posts/default"/>
         </outline>
     </body>
 </opml>
