@@ -382,7 +382,7 @@
                         less-css-mode yaml-mode magit hy-mode))
 
 
-;; I've been writing a programming language lately
+;; I've been writing a programming language "lately"
 (defconst glitteral-mode-path "~/Code/Glitteral/glitteral-mode.el")
 (when (file-exists-p glitteral-mode-path)
   (load-file glitteral-mode-path))
