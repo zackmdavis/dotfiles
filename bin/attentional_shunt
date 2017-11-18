@@ -45,13 +45,8 @@ DISTRACTING_HOSTS = (  # modify as needed
     'academia.stackexchange.com',
     'codereview.stackexchange.com',
     'puzzling.stackexchange.com',
-    'slatestarcodex.com',
     'twitter.com',
     'www.facebook.com',
-    'slatestarscratchpad.tumblr.com',
-    'sillyolme.wordpress.com',
-    'transkids.us',
-    'internals.rust-lang.org',
     'www.youtube.com',
 )
 SHUNTING_LINES = "\n{}\n{}\n".format(
