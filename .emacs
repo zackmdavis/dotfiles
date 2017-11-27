@@ -377,7 +377,7 @@
               '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(defconst my-packages '(clojure-mode
+(defconst my-packages '(clojure-mode nginx-mode
                         racket-mode rust-mode web-mode haskell-mode
                         less-css-mode yaml-mode magit hy-mode))
 
