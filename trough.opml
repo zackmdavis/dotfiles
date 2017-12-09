@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Sun Nov 26 12:49:03 2017</dateModified>
+        <dateModified>Sat Dec 9 12:24:15 2017</dateModified>
     </head>
     <body>
         <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
@@ -13,6 +13,7 @@
             <outline text="XKCD" type="rss" htmlUrl="https://xkcd.com/" xmlUrl="https://xkcd.com/rss.xml"/>
             <outline text="Saturday Morning Breakfast Cereal" type="rss" htmlUrl="http://www.smbc-comics.com/" xmlUrl="http://www.smbc-comics.com/rss.php"/>
             <outline text="Sluggy Freelance" type="rss" htmlUrl="http://www.sluggy.com" xmlUrl="http://feeds.feedburner.com/sluggy_freelance"/>
+            <outline text="Dresden Codak" type="rss" htmlUrl="http://dresdencodak.com" xmlUrl="http://feeds2.feedburner.com/rsspect/fJur"/>
         </outline>
         <outline text="Blogs">
             <outline text="An Algorithmic Lucidity" type="rss" htmlUrl="http://zackmdavis.net/blog" xmlUrl="http://zackmdavis.net/blog/feed/"/>
@@ -28,7 +29,7 @@
             <outline text="The Story's Story" type="rss" htmlUrl="https://jakeseliger.com" xmlUrl="https://jakeseliger.com/feed/"/>
             <outline text="Slate Star Scratchpad" type="rss" htmlUrl="https://slatestarscratchpad.tumblr.com/" xmlUrl="https://slatestarscratchpad.tumblr.com/rss"/>
             <outline text="Survey Anon's Gender Blog" type="rss" htmlUrl="https://surveyanon.wordpress.com" xmlUrl="https://surveyanon.wordpress.com/feed/"/>
-            <outline text="Third Way Trans" type="rss" htmlUrl="http://thirdwaytrans.com" xmlUrl="https://thirdwaytrans.com/feed/"/>
+            <outline text="Third Way Trans" type="rss" htmlUrl="https://thirdwaytrans.com" xmlUrl="https://thirdwaytrans.com/feed/"/>
             <outline text="Thing of Things" type="rss" htmlUrl="https://thingofthings.wordpress.com" xmlUrl="https://thingofthings.wordpress.com/feed/"/>
             <outline text="Paula Wright" type="rss" htmlUrl="https://porlawright.com" xmlUrl="https://porlawright.com/feed/"/>
             <outline text="David R. MacIver" type="rss" htmlUrl="http://www.drmaciver.com" xmlUrl="http://www.drmaciver.com/blog/feed/"/>
@@ -85,15 +86,22 @@
             <outline text="Julia Evans" type="rss" htmlUrl="http://jvns.ca" xmlUrl="https://jvns.ca/atom.xml"/>
             <outline text="Paul Graham: Essays" type="rss" htmlUrl="http://www.paulgraham.com/" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
             <outline text="FiveThirtyEight Economics" type="rss" htmlUrl="https://fivethirtyeight.com" xmlUrl="https://fivethirtyeight.com/economics/feed/"/>
-            <outline text="Bloody Shovel" type="rss" htmlUrl="https://bloodyshovel.wordpress.com" xmlUrl="https://bloodyshovel.wordpress.com/feed/"/>
             <outline text="FiveThirtyEight Science &amp; Health" type="rss" htmlUrl="https://fivethirtyeight.com" xmlUrl="https://fivethirtyeight.com/science/feed/"/>
+            <outline text="Bloody Shovel" type="rss" htmlUrl="https://bloodyshovel.wordpress.com" xmlUrl="https://bloodyshovel.wordpress.com/feed/"/>
             <outline text="Erik McClure" type="rss" htmlUrl="http://blackhole12.blogspot.com/" xmlUrl="https://blackhole12.blogspot.com/feeds/posts/default"/>
             <outline text="Scott H. Young" type="rss" htmlUrl="https://www.scotthyoung.com/blog" xmlUrl="https://www.scotthyoung.com/blog/feed/"/>
             <outline text="Ideologjammin'" type="rss" htmlUrl="https://ideologjammin.wordpress.com" xmlUrl="https://ideologjammin.wordpress.com/feed/"/>
             <outline text="Clear Language, Clear Mind" type="rss" htmlUrl="http://emilkirkegaard.dk/en" xmlUrl="http://emilkirkegaard.dk/en/?feed=rss2"/>
             <outline text="Gender Contrary" type="rss" htmlUrl="http://neat-dyke.tumblr.com/" xmlUrl="http://neat-dyke.tumblr.com/rss"/>
-            <outline text="Math ∩ Programming" type="rss" htmlUrl="https://jeremykun.com" xmlUrl="https://jeremykun.com/feed/"/>
+            <outline text="Math ∩ Programming" type="rss" htmlUrl="http://jeremykun.com" xmlUrl="https://jeremykun.com/feed/"/>
             <outline text="Gowers's Weblog" type="rss" htmlUrl="https://gowers.wordpress.com" xmlUrl="https://gowers.wordpress.com/feed/"/>
+            <outline text="Shannon Thrace" type="rss" htmlUrl="https://shannonthrace.wordpress.com" xmlUrl="https://shannonthrace.wordpress.com/feed/"/>
+            <outline text="Fuzzy Notepad" type="rss" htmlUrl="https://eev.ee/" xmlUrl="https://eev.ee/feeds/blog.atom.xml"/>
+            <outline text="See Alexander Code" type="rss" htmlUrl="https://acorwin.com" xmlUrl="https://acorwin.com/feed/"/>
+            <outline text="Let Grow" type="rss" htmlUrl="https://letgrow.org" xmlUrl="https://letgrow.org/feed/"/>
+            <outline text="/r/rust" type="rss" htmlUrl="https://www.reddit.com/r/rust/" xmlUrl="https://www.reddit.com/r/rust/.rss"/>
+            <outline text="/r/Blanchardianism" type="rss" htmlUrl="https://www.reddit.com/r/Blanchardianism/" xmlUrl="https://www.reddit.com/r/Blanchardianism/.rss"/>
+            <outline text="/r/DaystromInstitute" type="rss" htmlUrl="https://www.reddit.com/r/DaystromInstitute/" xmlUrl="https://www.reddit.com/r/DaystromInstitute/.rss"/>
         </outline>
     </body>
 </opml>
