@@ -209,7 +209,7 @@ def no_edit_terminal_history(ctx):
 def install_leiningen(ctx, path="/usr/local/bin/lein"):
     ctx.run("curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /tmp/lein")
     ctx.run("sudo cp /tmp/lein {}".format(path))
-    mark_executable(path, sudo=True)
+    mark_executable(ctx, path, sudo=True)
 
 
 @task
@@ -219,6 +219,8 @@ def install_tarsnap(ctx):
     apt_get_update(ctx)
     apt_get_install(ctx, "tarsnap")
 
+# TODO: Discord, VSCode maybe?, VirtualBox maybe?
+# `ln -s /usr/bin/nodejs /usr/bin/node` maybe?
 
 # omnibus
 
