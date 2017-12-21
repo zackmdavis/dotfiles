@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import argparse # TODO
+import subprocess
+import sys
+import re
+
+ADDITION = re.compile(r'\{\+(.*?)\+\}')
+DELETION = re.compile(r'\[\-(.*?)\-\]')
+
+# TODO: allow passing a particular SHA (IIRC, `git diff $SHA` does not behave
+# like I would naïvely expect)
+
+def count_from_worddiff(word_diff):
+    return {
+        "{}s".format(change_type):
+            sum(len(passage.split(' '))
+                for passage in globals()[change_type.upper()].findall(word_diff))
+        for change_type in ['addition', 'deletion']
+    }
+
+
+if __name__ == "__main__":
+    diff_args = sys.argv[1:] if len(sys.argv) >= 2 else []
+    diff = subprocess.run(['git', 'diff', '--word-diff'] + diff_args,
+                          stdout=subprocess.PIPE)
+    print(count_from_worddiff(diff.stdout.decode()))
