@@ -15,6 +15,8 @@ alias gd="git diff"
 alias gdc="git diff --cached"
 alias gl="git log"
 alias gg="git log --graph --oneline --decorate"
+alias gw="git diff --word-diff"
+alias gwc="git diff --word-diff --cached"
 
 function rebase_on () {
     git checkout "$1"
