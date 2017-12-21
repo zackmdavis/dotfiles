@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Sat Dec 9 12:24:15 2017</dateModified>
+        <dateModified>Mon Dec 18 12:34:54 2017</dateModified>
     </head>
     <body>
         <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
@@ -93,7 +93,7 @@
             <outline text="Ideologjammin'" type="rss" htmlUrl="https://ideologjammin.wordpress.com" xmlUrl="https://ideologjammin.wordpress.com/feed/"/>
             <outline text="Clear Language, Clear Mind" type="rss" htmlUrl="http://emilkirkegaard.dk/en" xmlUrl="http://emilkirkegaard.dk/en/?feed=rss2"/>
             <outline text="Gender Contrary" type="rss" htmlUrl="http://neat-dyke.tumblr.com/" xmlUrl="http://neat-dyke.tumblr.com/rss"/>
-            <outline text="Math ∩ Programming" type="rss" htmlUrl="http://jeremykun.com" xmlUrl="https://jeremykun.com/feed/"/>
+            <outline text="Math ∩ Programming" type="rss" htmlUrl="https://jeremykun.com" xmlUrl="https://jeremykun.com/feed/"/>
             <outline text="Gowers's Weblog" type="rss" htmlUrl="https://gowers.wordpress.com" xmlUrl="https://gowers.wordpress.com/feed/"/>
             <outline text="Shannon Thrace" type="rss" htmlUrl="https://shannonthrace.wordpress.com" xmlUrl="https://shannonthrace.wordpress.com/feed/"/>
             <outline text="Fuzzy Notepad" type="rss" htmlUrl="https://eev.ee/" xmlUrl="https://eev.ee/feeds/blog.atom.xml"/>
@@ -102,6 +102,12 @@
             <outline text="/r/rust" type="rss" htmlUrl="https://www.reddit.com/r/rust/" xmlUrl="https://www.reddit.com/r/rust/.rss"/>
             <outline text="/r/Blanchardianism" type="rss" htmlUrl="https://www.reddit.com/r/Blanchardianism/" xmlUrl="https://www.reddit.com/r/Blanchardianism/.rss"/>
             <outline text="/r/DaystromInstitute" type="rss" htmlUrl="https://www.reddit.com/r/DaystromInstitute/" xmlUrl="https://www.reddit.com/r/DaystromInstitute/.rss"/>
+        </outline>
+        <outline text="Unmentionables">
+            <outline text="The Swapping Grounds" type="rss" htmlUrl="http://swappinggrounds.blogspot.com/" xmlUrl="http://swappinggrounds.blogspot.com/feeds/posts/default"/>
+            <outline text="TG Swapping Caps" type="rss" htmlUrl="http://tgswappingcaps.blogspot.com/" xmlUrl="http://tgswappingcaps.blogspot.com/feeds/posts/default"/>
+            <outline text="CrestF TG Captions" type="rss" htmlUrl="http://crestftgcaptions.blogspot.com/" xmlUrl="http://crestftgcaptions.blogspot.com/feeds/posts/default"/>
+            <outline text="Some TG Captions" type="rss" htmlUrl="http://some-tg-caps.blogspot.com/" xmlUrl="http://some-tg-caps.blogspot.com/feeds/posts/default"/>
         </outline>
     </body>
 </opml>
