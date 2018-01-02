@@ -71,7 +71,8 @@ MY_APT_PACKAGES = [
     "gitk", "pandoc", "at", "silversearcher-ag", "default-jre",
     "chromium-browser", "sqlite", "gimp", "lm-sensors", "htop", "redshift",
     "build-essential", "dkms", "libreadline-dev",
-    "tree", "wdiff", "clang", "mnemosyne", "texlive-latex-base", "dvipng"
+    "tree", "wdiff", "clang", "mnemosyne", "texlive-latex-base", "dvipng",
+    "valgrind"
 ]
 
 MY_SECOND_TIER_APT_PACKAGES = [
@@ -219,7 +220,7 @@ def install_tarsnap(ctx):
     apt_get_update(ctx)
     apt_get_install(ctx, "tarsnap")
 
-# TODO: Discord, VSCode maybe?, VirtualBox maybe?
+# TODO: Discord, VSCode maybe?, VirtualBox maybe?, Wireshark
 # `ln -s /usr/bin/nodejs /usr/bin/node` maybe?
 
 # omnibus
