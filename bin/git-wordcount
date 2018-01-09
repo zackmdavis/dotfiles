@@ -12,8 +12,10 @@ DELETION = re.compile(r'\[\-(.*?)\-\]')
 def count_from_worddiff(word_diff):
     return {
         "{}s".format(change_type):
-            sum(len(passage.split(' '))
-                for passage in globals()[change_type.upper()].findall(word_diff))
+            sum(len(passage.group(1).split(' '))
+                for passage in globals()[change_type.upper()].finditer(word_diff)
+                # exclude Markdown blockquotes
+                if not passage.group(1).startswith('>'))
         for change_type in ['addition', 'deletion']
     }
 
