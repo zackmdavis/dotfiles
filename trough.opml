@@ -2,7 +2,7 @@
 <opml version="2.0">
     <head>
         <title>QuiteRSS</title>
-        <dateModified>Mon Dec 18 12:34:54 2017</dateModified>
+        <dateModified>Sun Jan 14 14:32:32 2018</dateModified>
     </head>
     <body>
         <outline text="QuiteRSS" type="rss" htmlUrl="http://quiterss.org/en/frontpage" xmlUrl="http://quiterss.org/en/rss.xml"/>
@@ -11,7 +11,7 @@
             <outline text="Questionable Content" type="rss" htmlUrl="http://www.questionablecontent.net" xmlUrl="http://www.questionablecontent.net/QCRSS.xml"/>
             <outline text="El Goonish Shive" type="rss" htmlUrl="http://www.egscomics.com/" xmlUrl="http://www.egscomics.com/rss.php"/>
             <outline text="XKCD" type="rss" htmlUrl="https://xkcd.com/" xmlUrl="https://xkcd.com/rss.xml"/>
-            <outline text="Saturday Morning Breakfast Cereal" type="rss" htmlUrl="http://www.smbc-comics.com/" xmlUrl="http://www.smbc-comics.com/rss.php"/>
+            <outline text="Saturday Morning Breakfast Cereal" type="rss" htmlUrl="https://www.smbc-comics.com/" xmlUrl="http://www.smbc-comics.com/rss.php"/>
             <outline text="Sluggy Freelance" type="rss" htmlUrl="http://www.sluggy.com" xmlUrl="http://feeds.feedburner.com/sluggy_freelance"/>
             <outline text="Dresden Codak" type="rss" htmlUrl="http://dresdencodak.com" xmlUrl="http://feeds2.feedburner.com/rsspect/fJur"/>
         </outline>
@@ -26,7 +26,7 @@
             <outline text="Otium" type="rss" htmlUrl="https://srconstantin.wordpress.com" xmlUrl="https://srconstantin.wordpress.com/feed/"/>
             <outline text="Meteuphoric" type="rss" htmlUrl="https://meteuphoric.wordpress.com" xmlUrl="https://meteuphoric.wordpress.com/feed/"/>
             <outline text="Compass Rose" type="rss" htmlUrl="http://benjaminrosshoffman.com" xmlUrl="http://benjaminrosshoffman.com/feed/"/>
-            <outline text="The Story's Story" type="rss" htmlUrl="https://jakeseliger.com" xmlUrl="https://jakeseliger.com/feed/"/>
+            <outline text="The Story's Story" type="rss" htmlUrl="http://jakeseliger.com" xmlUrl="https://jakeseliger.com/feed/"/>
             <outline text="Slate Star Scratchpad" type="rss" htmlUrl="https://slatestarscratchpad.tumblr.com/" xmlUrl="https://slatestarscratchpad.tumblr.com/rss"/>
             <outline text="Survey Anon's Gender Blog" type="rss" htmlUrl="https://surveyanon.wordpress.com" xmlUrl="https://surveyanon.wordpress.com/feed/"/>
             <outline text="Third Way Trans" type="rss" htmlUrl="https://thirdwaytrans.com" xmlUrl="https://thirdwaytrans.com/feed/"/>
@@ -34,7 +34,7 @@
             <outline text="Paula Wright" type="rss" htmlUrl="https://porlawright.com" xmlUrl="https://porlawright.com/feed/"/>
             <outline text="David R. MacIver" type="rss" htmlUrl="http://www.drmaciver.com" xmlUrl="http://www.drmaciver.com/blog/feed/"/>
             <outline text="Don't Worry About the Vase" type="rss" htmlUrl="https://thezvi.wordpress.com" xmlUrl="https://thezvi.wordpress.com/feed/"/>
-            <outline text="The Rationalist Conspiracy" type="rss" htmlUrl="https://rationalconspiracy.com" xmlUrl="https://rationalconspiracy.com/feed/"/>
+            <outline text="The Rationalist Conspiracy" type="rss" htmlUrl="http://rationalconspiracy.com" xmlUrl="https://rationalconspiracy.com/feed/"/>
             <outline text="Mathemusicality" type="rss" htmlUrl="https://mathemusicality.wordpress.com" xmlUrl="https://mathemusicality.wordpress.com/feed/"/>
             <outline text="The Unit of Caring" type="rss" htmlUrl="https://theunitofcaring.tumblr.com/" xmlUrl="https://theunitofcaring.tumblr.com/rss"/>
             <outline text="Carey Callahan" type="rss" htmlUrl="https://careycallahan.com" xmlUrl="https://careycallahan.com/feed/"/>
@@ -50,7 +50,7 @@
             <outline text="The Future Primaeval" type="rss" htmlUrl="http://thefutureprimaeval.net/" xmlUrl="http://thefutureprimaeval.net/rss/"/>
             <outline text="Jim’s Blog" type="rss" htmlUrl="https://blog.jim.com" xmlUrl="http://blog.jim.com/feed/"/>
             <outline text="Philip Greenspun's Weblog" type="rss" htmlUrl="http://blogs.harvard.edu/philg" xmlUrl="http://blogs.harvard.edu/philg/feed/"/>
-            <outline text="My Only Path to Power" type="rss" htmlUrl="https://nomoremilquetoast.com" xmlUrl="https://transwidow.wordpress.com/feed/"/>
+            <outline text="My Only Path to Power" type="rss" htmlUrl="https://transwidow.wordpress.com" xmlUrl="https://transwidow.wordpress.com/feed/"/>
             <outline text="Status 451" type="rss" htmlUrl="https://status451.com" xmlUrl="https://status451.com/feed/"/>
             <outline text="Stories by Marcus on Medium" type="rss" htmlUrl="https://medium.com/@LogicalMarcus?source=rss-8e5339c3ab6d------2" xmlUrl="https://medium.com/feed/@LogicalMarcus"/>
             <outline text="Razib Khan" type="rss" htmlUrl="http://www.razib.com/wordpress" xmlUrl="http://feeds.feedburner.com/RazibKhansTotalFeed"/>
@@ -86,6 +86,8 @@
             <outline text="Julia Evans" type="rss" htmlUrl="http://jvns.ca" xmlUrl="https://jvns.ca/atom.xml"/>
             <outline text="Paul Graham: Essays" type="rss" htmlUrl="http://www.paulgraham.com/" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
             <outline text="FiveThirtyEight Economics" type="rss" htmlUrl="https://fivethirtyeight.com" xmlUrl="https://fivethirtyeight.com/economics/feed/"/>
+            <outline text="Sinceriously" type="rss" htmlUrl="https://sinceriously.fyi" xmlUrl="https://sinceriously.fyi/feed/"/>
+            <outline text="Millie Vs Fence" type="rss" htmlUrl="https://millievfence.tumblr.com/" xmlUrl="https://millievfence.tumblr.com/rss"/>
             <outline text="FiveThirtyEight Science &amp; Health" type="rss" htmlUrl="https://fivethirtyeight.com" xmlUrl="https://fivethirtyeight.com/science/feed/"/>
             <outline text="Bloody Shovel" type="rss" htmlUrl="https://bloodyshovel.wordpress.com" xmlUrl="https://bloodyshovel.wordpress.com/feed/"/>
             <outline text="Erik McClure" type="rss" htmlUrl="http://blackhole12.blogspot.com/" xmlUrl="https://blackhole12.blogspot.com/feeds/posts/default"/>
