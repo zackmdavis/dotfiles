@@ -38,7 +38,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (when (file-exists-p "~/.emacs.d/themes/an-algorithmic-luciditheme-theme.el")
   (load-theme 'an-algorithmic-luciditheme t))
-(set-face-attribute 'default nil :height 115)
+(set-face-attribute 'default nil :height 105)
 
 ;; 63rd & Adeline
 (setq calendar-latitude 37.847392)
