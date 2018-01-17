@@ -72,7 +72,8 @@ MY_APT_PACKAGES = [
     "chromium-browser", "sqlite", "gimp", "lm-sensors", "htop", "redshift",
     "build-essential", "dkms", "libreadline-dev", "quiterss",
     "tree", "wdiff", "clang", "mnemosyne", "texlive-latex-base", "dvipng",
-    "valgrind"
+    "valgrind",
+    "fonts-ebgaramond", # Garamond is very important
 ]
 
 MY_SECOND_TIER_APT_PACKAGES = [
