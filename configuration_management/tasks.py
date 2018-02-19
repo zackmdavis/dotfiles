@@ -69,7 +69,8 @@ def apt_add_key(ctx, key_url):
 MY_APT_PACKAGES = [
     "emacs24", "python3", "python3-dev", "python3-tk", "python3-venv",
     "curl", "git", "gitk", "pandoc", "at", "silversearcher-ag", "default-jre",
-    "chromium-browser", "sqlite", "gimp", "lm-sensors", "htop", "redshift",
+    "chromium-browser", "sqlite", "gimp", "lm-sensors", "htop",
+    "redshift", "redshift-gtk",
     "build-essential", "dkms", "libreadline-dev", "quiterss",
     "tree", "wdiff", "clang", "mnemosyne", "texlive-latex-base", "dvipng",
     "valgrind",
@@ -88,8 +89,8 @@ def apt_get_my_packages(ctx):
 
 # pip
 
-MY_PIP_PACKAGES = ("pudb", "invoke", "ipython", "hy", "numpy", "scipy",
-                   "scikit-learn")
+MY_PIP_PACKAGES = ("pudb", "invoke", "ipython", "hy", "requests",
+                   "numpy", "scipy", "scikit-learn", "matplotlib")
 
 @task
 def pip_install(ctx, packages, sudo=True, upgrade=False):
@@ -99,6 +100,7 @@ def pip_install(ctx, packages, sudo=True, upgrade=False):
 def pip_install_my_packages(ctx):
     pip_install(ctx, " ".join(package for package in MY_PIP_PACKAGES))
 
+# TODO: fix .config/pudb ownership perms
 
 # git
 
@@ -159,8 +161,8 @@ def install_deb(ctx, deb_url):
 def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws',
-                   '.gitconfig')
-    # XXX: we might need to create .emacs.d/?
+                   '.gitconfig', '.config/autostart/redshift-gtk.desktop')
+    # XXX: we might need to create .emacs.d/ and .config/autostart
     for dotfile in my_dotfiles:
         if not os.path.islink("/home/zmd/" + dotfile):
             print("linking {}".format(dotfile))
@@ -226,7 +228,7 @@ def install_tarsnap(ctx):
 # TODO: Discord, VSCode maybe?, VirtualBox maybe?, Wireshark
 # `ln -s /usr/bin/nodejs /usr/bin/node` maybe?
 
-# TODO: startup `redshift`
+# TODO: HISTSIZE, history archives
 
 # omnibus
 
