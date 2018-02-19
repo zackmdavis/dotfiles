@@ -268,6 +268,11 @@
   (insert "<!DOCTYPE html><meta charset=\"utf-8\"/>\n")
   (save-buffer))
 
+(defun markdown-preview ()
+  (interactive)
+  (markdown-to-html)
+  (browse-url-of-file))
+
 (defun markdown-to-wordpress-comment ()
   ;; WordPress doesn't handle `<p>` tags in comments, and I don't like
   ;; entity-encoding ... that is, basically, I just don't want to have to type
