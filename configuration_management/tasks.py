@@ -119,7 +119,7 @@ def github_clone(ctx, user, repository, destination=None):
 
 @task
 def make_dir_in_home(ctx, subpath):
-    os.mkdir("/home/zmd/" + path, 0o775)
+    os.mkdir("/home/zmd/" + subpath, 0o775)
 
 @task
 def mark_executable(ctx, path, sudo=False):
@@ -162,8 +162,10 @@ def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws',
                    '.gitconfig', '.config/autostart/redshift-gtk.desktop')
-    # XXX: we might need to create .emacs.d/ and .config/autostart
     for dotfile in my_dotfiles:
+        if '/' in dotfile:
+            dir_path, _ = dotfile.rsplit('/', 1)
+            make_dir_in_home(ctx, dir_path)
         if not os.path.islink("/home/zmd/" + dotfile):
             print("linking {}".format(dotfile))
             ctx.run("ln -s /home/zmd/Code/dotfiles/{0} /home/zmd/{0}".format(dotfile))
