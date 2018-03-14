@@ -119,7 +119,7 @@ def github_clone(ctx, user, repository, destination=None):
 
 @task
 def make_dir_in_home(ctx, subpath):
-    os.mkdir("/home/zmd/" + subpath, 0o775)
+    os.makedirs("/home/zmd/" + subpath, 0o775, exist_ok=True)
 
 @task
 def mark_executable(ctx, path, sudo=False):
@@ -162,6 +162,9 @@ def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws',
                    '.gitconfig', '.config/autostart/redshift-gtk.desktop')
+    # XXX:
+    # '.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml'
+    # didn't seem to be picked up when I tried??
     for dotfile in my_dotfiles:
         if '/' in dotfile:
             dir_path, _ = dotfile.rsplit('/', 1)
@@ -227,7 +230,10 @@ def install_tarsnap(ctx):
     apt_get_update(ctx)
     apt_get_install(ctx, "tarsnap")
 
-# TODO: Discord, VSCode maybe?, VirtualBox maybe?, Wireshark
+
+# TODO: Discord, VSCode maybe?, VirtualBox maybe?, Wireshark,
+# Docker? (I messed up my apt repos when I tried)
+
 # `ln -s /usr/bin/nodejs /usr/bin/node` maybe?
 
 # TODO: HISTSIZE, history archives
