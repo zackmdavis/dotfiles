@@ -90,7 +90,8 @@ def apt_get_my_packages(ctx):
 # pip
 
 MY_PIP_PACKAGES = ("pudb", "invoke", "ipython", "hy", "requests",
-                   "numpy", "scipy", "scikit-learn", "matplotlib")
+                   "numpy", "scipy", "scikit-learn", "matplotlib",
+                   "isort")
 
 @task
 def pip_install(ctx, packages, sudo=True, upgrade=False):
