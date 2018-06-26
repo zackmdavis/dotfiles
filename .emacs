@@ -69,6 +69,9 @@
 
 ;; `suspend-frame` is not so useful and too easy to fat-finger
 (global-unset-key (kbd "C-x C-z"))
+;; `scroll-left` is disabled by default and I keep hitting it anyway and
+;; bringing up the disabled screen
+(global-unset-key (kbd "<C-next>"))
 
 ;; TODO: CUA global mark (ctl-shift-space) is the absolute worst thing and it's
 ;; possible to fat-finger it; how to disable??
