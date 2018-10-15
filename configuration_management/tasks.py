@@ -73,7 +73,7 @@ MY_APT_PACKAGES = [
     "redshift", "redshift-gtk",
     "build-essential", "dkms", "libreadline-dev", "quiterss",
     "tree", "wdiff", "clang", "mnemosyne", "texlive-latex-base", "dvipng",
-    "valgrind",
+    "valgrind", "poppler-utils",
     "fonts-ebgaramond", # Garamond is very important
 ]
 
