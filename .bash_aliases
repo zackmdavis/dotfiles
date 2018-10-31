@@ -18,7 +18,7 @@ alias gg="git log --graph --oneline --decorate"
 alias gw="git diff --word-diff"
 alias gwc="git diff --word-diff --cached"
 
-function rebase_on () {
+function re_base_on () {
     git checkout "$1"
     git pull
     git checkout -
@@ -26,11 +26,13 @@ function rebase_on () {
 }
 
 function rebase_on_master () {
-    rebase_on master
+    re_base_on master
 }
 
-function rebase_on_development () {
-    rebase_on development
+function repush_off_master () {
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    rebase_on_master
+    git push origin $branch --force-with-lease
 }
 
 # Emacs
