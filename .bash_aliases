@@ -35,6 +35,13 @@ function repush_off_master () {
     git push origin $branch --force-with-lease
 }
 
+function merge_up () {
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    git checkout master
+    git merge $branch
+    git push origin master
+}
+
 # Emacs
 alias e="emacs"
 alias te="emacs -nw"
