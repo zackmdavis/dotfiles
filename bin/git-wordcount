@@ -29,4 +29,6 @@ if __name__ == "__main__":
     else:
         diff = subprocess.run(['git', 'diff', '--word-diff'] + diff_args,
                               stdout=subprocess.PIPE)
-    print(count_from_worddiff(diff.stdout.decode()))
+    counts = count_from_worddiff(diff.stdout.decode())
+    counts['net'] = counts['additions'] - counts['deletions']
+    print(counts)
