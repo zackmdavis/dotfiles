@@ -163,7 +163,7 @@ def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws',
                    '.gitconfig', '.config/autostart/redshift-gtk.desktop',
-                   '.config/xfce4/terminal/accels.scm')
+                   '.config/xfce4/terminal/accels.scm', '.isort.cfg')
     # XXX:
     # '.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml'
     # didn't seem to be picked up when I tried??—but possibly just needed to
