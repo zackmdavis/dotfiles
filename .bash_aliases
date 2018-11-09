@@ -19,9 +19,9 @@ alias gw="git diff --word-diff"
 alias gwc="git diff --word-diff --cached"
 
 function re_base_on () {
-    git checkout "$1"
-    git pull
-    git checkout -
+    git checkout "$1" &&
+    git pull &&
+    git checkout - &&
     git rebase "$1"
 }
 
@@ -32,14 +32,20 @@ function rebase_on_master () {
 function repush_off_master () {
     branch=$(git rev-parse --abbrev-ref HEAD)
     rebase_on_master
-    git push origin $branch --force-with-lease
+    if git show-branch remotes/origin/$branch 2> /dev/null; then
+        git push origin $branch --force-with-lease
+    else
+        git push origin $branch
+    fi
 }
 
 function merge_up () {
     branch=$(git rev-parse --abbrev-ref HEAD)
-    git checkout master
-    git merge $branch
-    git push origin master
+    git checkout master &&
+    git merge $branch &&
+    git push origin master &&
+    git push origin --delete $branch &&
+    git branch -d $branch
 }
 
 # Emacs
