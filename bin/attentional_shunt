@@ -49,6 +49,7 @@ DISTRACTING_HOSTS = (  # modify as needed
     'twitter.com',
     'www.facebook.com',
     'www.youtube.com',
+    'www.lesswrong.com',
 )
 SHUNTING_LINES = "\n{}\n{}\n".format(
     HEADER,
