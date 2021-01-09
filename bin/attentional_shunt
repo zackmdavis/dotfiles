@@ -36,20 +36,13 @@ HEADER = "# below managed by attentional shunt"
 INVERSE_COMMANDS = {'enable': "disable", 'disable': "enable"}
 
 DISTRACTING_HOSTS = (  # modify as needed
-    'zackmdavis.net',
     'www.reddit.com',
-    'news.ycombinator.com',
-    'math.stackexchange.com',
-    'scifi.stackexchange.com',
-    'worldbuilding.stackexchange.com',
-    'workplace.stackexchange.com',
-    'academia.stackexchange.com',
-    'codereview.stackexchange.com',
-    'puzzling.stackexchange.com',
+    'old.reddit.com',
     'twitter.com',
     'www.facebook.com',
     'www.youtube.com',
     'www.lesswrong.com',
+    'www.greaterwrong.com',
 )
 SHUNTING_LINES = "\n{}\n{}\n".format(
     HEADER,
