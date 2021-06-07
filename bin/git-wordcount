@@ -21,14 +21,22 @@ def count_from_worddiff(word_diff):
 
 
 if __name__ == "__main__":
-    diff_args = sys.argv[1:] if len(sys.argv) >= 2 else []
-    if len(diff_args) == 1:
-        sha, = diff_args
-        diff = subprocess.run(['git', 'show', sha, '--word-diff'],
+    # TODO: what args does git-diff take besides a single SHA? Support that, too?
+    # diff = subprocess.run(['git', 'diff', '--word-diff'] + diff_args,
+    #                       stdout=subprocess.PIPE)
+    shas = sys.argv[1:]
+    if not shas:
+        diff = subprocess.run(['git', 'diff', '--word-diff'],
                               stdout=subprocess.PIPE)
+        counts = count_from_worddiff(diff.stdout.decode())
+        counts['net'] = counts['additions'] - counts['deletions']
     else:
-        diff = subprocess.run(['git', 'diff', '--word-diff'] + diff_args,
+        counts = {"additions": 0, "deletions": 0, "net": 0}
+        for sha in shas:
+            diff = subprocess.run(['git', 'show', sha, '--word-diff'],
                               stdout=subprocess.PIPE)
-    counts = count_from_worddiff(diff.stdout.decode())
-    counts['net'] = counts['additions'] - counts['deletions']
+            subcounts = count_from_worddiff(diff.stdout.decode())
+            counts['additions'] += subcounts['additions']
+            counts['deletions'] -= subcounts['deletions']
+            counts['net'] += subcounts['additions'] - subcounts['deletions']
     print(counts)
