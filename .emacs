@@ -29,7 +29,9 @@
 (setq uniquify-buffer-name-style 'forward)
 (setq initial-scratch-message "; scratch!\n\n")
 (setq initial-major-mode 'text-mode)
-(setq-default fill-column 79)
+(if (display-graphic-p)
+    (setq-default fill-column 79) ; 79 for Python &c.
+  (setq-default fill-column 70)) ; 70 for commit messages
 (setq-default indent-tabs-mode nil)
 (define-coding-system-alias 'UTF-8 'utf-8)
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
