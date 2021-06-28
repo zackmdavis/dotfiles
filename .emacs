@@ -306,10 +306,13 @@
 (defun fullscreen ()
   ;; from http://www.emacswiki.org/emacs/FullScreen
   (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+  (if (eq system-type 'darwin)
+      (set-frame-parameter nil 'fullscreen 'fullboth)
+    (progn
+      (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                             '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+      (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                             '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))))
 
 ;; hooks
 (defun delete-trailing-whitespace-in-code ()
