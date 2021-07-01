@@ -163,7 +163,9 @@ def symlink_dotfiles(ctx):
     my_dotfiles = ('.emacs', '.bash_aliases', '.agignore', '.lein',
                    '.emacs.d/themes', '.aspell.en.prepl', '.aspell.en.pws',
                    '.gitconfig', '.config/autostart/redshift-gtk.desktop',
-                   '.config/xfce4/terminal/accels.scm', '.isort.cfg')
+                   '.config/xfce4/terminal/accels.scm', '.isort.cfg',
+                   # '.zshrc'
+                   )
     # XXX:
     # '.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml'
     # didn't seem to be picked up when I tried??—but possibly just needed to
@@ -174,6 +176,7 @@ def symlink_dotfiles(ctx):
             make_dir_in_home(ctx, dir_path)
         if not os.path.islink("/home/zmd/" + dotfile):
             print("linking {}".format(dotfile))
+            # TODO: macOS has /Users, not /home
             ctx.run("ln -s /home/zmd/Code/dotfiles/{0} /home/zmd/{0}".format(dotfile))
         else:
             print("{} symlink already exists, continuing ...".format(dotfile))
@@ -215,6 +218,10 @@ def no_caps_lock(ctx):
 def no_edit_terminal_history(ctx):
     append_to_bashrc(ctx, "bind 'revert-all-at-newline on'")
 
+@task
+def big_history(ctx):
+    append_to_bashrc(ctx, "export HISTSIZE=50000; export HISTFILESIZE=50000")
+
 
 ## particular applications
 
@@ -239,7 +246,6 @@ def install_tarsnap(ctx):
 
 # `ln -s /usr/bin/nodejs /usr/bin/node` maybe?
 
-# TODO: HISTSIZE, history archives
 
 # omnibus
 
