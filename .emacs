@@ -67,6 +67,12 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; Home and End keys when under Cupertino tyranny
+(if (eq system-type 'darwin)
+    (progn
+      (global-set-key (kbd "<end>") 'move-end-of-line)
+      (global-set-key (kbd "<home>") 'move-beginning-of-line)))
+
 ;; disabled default commands
 
 ;; `suspend-frame` is not so useful and too easy to fat-finger
