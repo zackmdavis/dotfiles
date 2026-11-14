@@ -291,7 +291,7 @@
   (interactive)
   (let* ((basename (file-name-sans-extension (buffer-file-name)))
          (html-filename (format "%s.html" basename)))
-    (shell-command (format "pandoc -o %s %s"
+    (shell-command (format "pandoc -o %s %s --wrap=none"
                            html-filename (buffer-file-name)))
     (find-file-other-window html-filename))
   (beginning-of-buffer)
